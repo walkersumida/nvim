@@ -90,6 +90,8 @@ map <leader>f :MRU<CR>
 """"""""""""""""""""""""""""""
 lua require("toggleterm").setup()
 
+nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+
 """"""""""""""""""""""""""""""
 " => autoclose plugin
 """"""""""""""""""""""""""""""

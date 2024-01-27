@@ -1,0 +1,32 @@
+{
+  "suggest.keepCompleteopt": true,
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.work",
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
+    "sql": {
+      "command": "sqls",
+      "args": [
+        "-config",
+        "$HOME/.config/sqls/config.yml"
+      ],
+      "filetypes": [
+        "sql"
+      ],
+      "shell": true
+    }
+  }
+}

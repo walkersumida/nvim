@@ -102,3 +102,21 @@ require("autoclose").setup({
    },
 })
 END
+
+""""""""""""""""""""""""""""""
+" => nvim-dap-ui
+""""""""""""""""""""""""""""""
+lua << EOF
+  require('dapui').setup()
+  require'dap'.listeners.before['event_initialized']['custom'] = function(session, body)
+    require'dapui'.open()
+  end
+  require'dap'.listeners.before['event_terminated']['custom'] = function(session, body)
+    require'dapui'.close()
+  end
+EOF
+
+""""""""""""""""""""""""""""""
+" => nvim-dap-go
+""""""""""""""""""""""""""""""
+lua require('dap-go').setup()

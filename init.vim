@@ -23,7 +23,9 @@ call plug#begin()
     Plug 'tomasiser/vim-code-dark'
 
     " Go
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
+    Plug 'leoluz/nvim-dap-go'
     " SQL
     Plug 'mattn/vim-sqlfmt'
     Plug 'nanotee/sqls.nvim'

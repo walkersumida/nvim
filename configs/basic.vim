@@ -1,11 +1,16 @@
 """"""""""""""""""""""""""""""
 " => general
 """"""""""""""""""""""""""""""
+set encoding=utf-8
+
 " Register Leader
 let mapleader = "\<Space>"
 
 " Sets how many lines of history VIM has to remember
 set history=500
+
+" default time is 4000 ms = 4s
+set updatetime=300
 
 " Enable filetype plugins
 filetype plugin on

@@ -66,18 +66,43 @@ highlight GitGutterDelete ctermfg=red ctermbg=darkgrey
 """"""""""""""""""""""""""""""
 inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <C-m> coc#pum#visible() ? coc#pum#confirm() : "\<C-m>"
-inoremap <silent><expr> <Esc> coc#pum#visible() ? coc#pum#cancel() : "\<Esc>"
-inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <silent><expr> <C-space> coc#refresh()
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType json let b:coc_suggest_disable = 1
-
-""""""""""""""""""""""""""""""
-" => vim-go
-""""""""""""""""""""""""""""""
-let g:go_doc_popup_window = 1
 
 """"""""""""""""""""""""""""""
 " => MRU plugin

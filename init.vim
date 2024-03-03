@@ -15,6 +15,7 @@ call plug#begin()
     Plug 'github/copilot.vim'
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
     Plug 'm4xshen/autoclose.nvim'
+    Plug 'guns/xterm-color-table.vim'
 
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
@@ -26,6 +27,7 @@ call plug#begin()
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'leoluz/nvim-dap-go'
+    Plug 'charlespascoe/vim-go-syntax'
     " SQL
     Plug 'mattn/vim-sqlfmt'
     Plug 'nanotee/sqls.nvim'

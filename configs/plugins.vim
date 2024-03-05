@@ -97,6 +97,8 @@ nmap <leader>rn <Plug>(coc-rename)
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType json let b:coc_suggest_disable = 1
 
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
 """"""""""""""""""""""""""""""
 " => MRU plugin
 """"""""""""""""""""""""""""""

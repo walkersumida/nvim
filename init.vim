@@ -3,10 +3,10 @@
 """"""""""""""""""""""""""""""
 " :PlugInstall
 call plug#begin()
-    Plug 'mileszs/ack.vim'
     Plug 'direnv/direnv.vim'
     Plug 'preservim/nerdtree'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
     Plug 'simeji/winresizer'
     Plug 'tpope/vim-commentary'
     Plug 'airblade/vim-gitgutter'

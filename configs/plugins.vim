@@ -1,15 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ack searching and cope displaying
-"    requires ack.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use the the_silver_searcher if possible (much faster than Ack)
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
-endif
-
-map <leader>g :Ack ''<left>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeWinPos = "left"
@@ -21,18 +10,25 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 """"""""""""""""""""""""""""""
-" => CTRL-P
+" => telescope.nvim
 """"""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 0
+lua << END
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-j>'] = 'move_selection_next',
+        ['<C-k>'] = 'move_selection_previous',
+      }
+    }
+  }
+}
+END
 
-" Quickly find and open a file in the current working directory
-let g:ctrlp_map = '<C-f>'
-
-" Quickly find and open a buffer
-map <C-b> :CtrlPBuffer<cr>
-
-let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+nnoremap <C-f><C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-f><C-k> <cmd>Telescope commands<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <C-b> <cmd>Telescope buffers<cr>
 
 """"""""""""""""""""""""""""""
 " => wilder (https://github.com/gelguy/wilder.nvim)

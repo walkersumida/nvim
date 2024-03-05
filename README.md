@@ -4,8 +4,9 @@
 
 ## Recommend
 
-- [the_silver_searcher](https://github.com/ggreer/the_silver_searcher?tab=readme-ov-file#installing)
 - [jq](https://github.com/jqlang/jq)
+- [ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
+  - Necessary to use `live_grep` of telescope.nvim
 
 ## Usage
 

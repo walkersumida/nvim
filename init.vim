@@ -23,6 +23,8 @@ call plug#begin()
     " Color scheme
     Plug 'tomasiser/vim-code-dark'
 
+    " Git
+    Plug 'rhysd/git-messenger.vim'
     " Go
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'

@@ -114,6 +114,12 @@ lua require("toggleterm").setup()
 nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 """"""""""""""""""""""""""""""
+" => git-messenger.vim
+""""""""""""""""""""""""""""""
+let g:git_messenger_no_default_mappings = v:true
+nmap <C-w>m <Plug>(git-messenger)
+
+""""""""""""""""""""""""""""""
 " => autoclose plugin
 """"""""""""""""""""""""""""""
 lua << END

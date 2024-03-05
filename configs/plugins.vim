@@ -94,9 +94,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType json let b:coc_suggest_disable = 1
 

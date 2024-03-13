@@ -21,13 +21,19 @@ require('telescope').setup{
         ['<C-k>'] = 'move_selection_previous',
       }
     }
+  },
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    }
   }
 }
 END
 
-nnoremap <C-f><C-f> <cmd>Telescope find_files<cr>
-nnoremap <C-f><C-k> <cmd>Telescope commands<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fk <cmd>Telescope commands<cr>
+nnoremap <leader>gg <cmd>Telescope live_grep<cr>
+nnoremap <Leader>gc <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <C-b> <cmd>Telescope buffers<cr>
 
 """"""""""""""""""""""""""""""
@@ -97,13 +103,21 @@ nmap <leader>rn <Plug>(coc-rename)
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType json let b:coc_suggest_disable = 1
 
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+""""""""""""""""""""""""""""""
+" => vim-go
+""""""""""""""""""""""""""""""
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_textobj_enabled = 0
+" let g:go_diagnostics_level = 2
 
 """"""""""""""""""""""""""""""
 " => MRU plugin
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
-map <leader>f :MRU<CR>
+map <leader>fh :MRU<CR>
 
 """"""""""""""""""""""""""""""
 " => MRU plugin
@@ -119,15 +133,13 @@ let g:git_messenger_no_default_mappings = v:true
 nmap <C-w>m <Plug>(git-messenger)
 
 """"""""""""""""""""""""""""""
-" => autoclose plugin
+" => nvim-dap
 """"""""""""""""""""""""""""""
-lua << END
-require("autoclose").setup({
-   keys = {
-      ["$"] = { escape = true, close = true, disabled_filetypes = {} },
-   },
-})
-END
+lua require("dap.ext.vscode").load_launchjs(nil, { cpptools = { "c", "cpp" } })
+map <leader>dj :lua require('dap').step_over()<CR>
+map <leader>dl :lua require('dap').step_into()<CR>
+map <leader>dp :lua require('dap').toggle_breakpoint()<CR>
+map <leader>dc :lua require('dap').continue()<CR>
 
 """"""""""""""""""""""""""""""
 " => nvim-dap-ui
@@ -141,6 +153,7 @@ lua << EOF
     require'dapui'.close()
   end
 EOF
+map <leader>dk :lua require('dapui').eval()<CR>
 
 """"""""""""""""""""""""""""""
 " => nvim-dap-go

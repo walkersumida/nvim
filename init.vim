@@ -14,8 +14,8 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'github/copilot.vim'
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
-    Plug 'm4xshen/autoclose.nvim'
     Plug 'guns/xterm-color-table.vim'
+    Plug 'chrisbra/Colorizer'
 
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
@@ -26,6 +26,7 @@ call plug#begin()
     " Git
     Plug 'rhysd/git-messenger.vim'
     " Go
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'leoluz/nvim-dap-go'

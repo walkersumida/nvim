@@ -163,6 +163,8 @@ lua << EOF
   end
 EOF
 map <leader>dk :lua require('dapui').eval()<CR>
+command DapUIOpen lua require'dapui'.open()
+command DapUIClose lua require'dapui'.close()
 
 """"""""""""""""""""""""""""""
 " => nvim-dap-go

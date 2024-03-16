@@ -28,11 +28,12 @@ require('telescope').setup{
     }
   }
 }
+require("telescope").load_extension("live_grep_args")
 END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fk <cmd>Telescope commands<cr>
-nnoremap <leader>gg <cmd>Telescope live_grep<cr>
+nnoremap <leader>gg :lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <Leader>gc <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <C-b> <cmd>Telescope buffers<cr>
 

@@ -19,6 +19,10 @@ call plug#begin()
     Plug 'chrisbra/Colorizer'
     Plug 'wellle/context.vim'
 
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui' " requires nvim-nio
+    Plug 'nvim-neotest/nvim-nio'
+
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
 
@@ -29,8 +33,6 @@ call plug#begin()
     Plug 'rhysd/git-messenger.vim'
     " Go
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'mfussenegger/nvim-dap'
-    Plug 'rcarriga/nvim-dap-ui'
     Plug 'leoluz/nvim-dap-go'
     Plug 'charlespascoe/vim-go-syntax'
     " SQL

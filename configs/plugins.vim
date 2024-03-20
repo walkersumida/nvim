@@ -87,14 +87,29 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
-nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ChoseAction(actions) abort
+  echo join(map(copy(a:actions), { _, v -> v.text }), ", ") .. ": "
+  let result = getcharstr()
+  let result = filter(a:actions, { _, v -> v.text =~# printf(".*\(%s\).*", result)})
+  return len(result) ? result[0].value : ""
+endfunction
+
+function! CocJumpAction() abort
+  let actions = [
+        \ {"text": "(h)orizontal split", "value": "split"},
+        \ {"text": "(v)ertical split", "value": "vsplit"},
+        \ {"text": "(t)ab", "value": "tabedit"},
+        \ ]
+  return ChoseAction(actions)
+endfunction
+
+" Use <C-]> to choose whether to open in a new window, in a tab, or in the current window when jumping definitions.
+nnoremap <silent> <C-]> :<C-u>call CocActionAsync('jumpDefinition', CocJumpAction())<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -103,6 +118,9 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')

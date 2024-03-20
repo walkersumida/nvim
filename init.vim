@@ -17,6 +17,7 @@ call plug#begin()
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
     Plug 'guns/xterm-color-table.vim'
     Plug 'chrisbra/Colorizer'
+    Plug 'wellle/context.vim'
 
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'

@@ -32,6 +32,9 @@ set ignorecase
 " When searching try to be smart about cases
 set smartcase
 
+set splitright
+set splitbelow
+
 xnoremap p pgvy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

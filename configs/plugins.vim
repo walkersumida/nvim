@@ -69,6 +69,7 @@ highlight GitGutterDelete ctermfg=red ctermbg=darkgrey
 """"""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \'coc-eslint', 
+  \'coc-json',
   \'coc-prettier', 
   \'coc-tslint-plugin', 
   \'coc-tsserver', 

@@ -1,6 +1,7 @@
 ## Require
 
 - [nerd-fonts](https://github.com/ryanoasis/nerd-fonts?tab=readme-ov-file#font-installation)
+- [terraform-ls](https://github.com/hashicorp/terraform-ls/blob/main/docs/installation.md)
 
 ## Recommend
 

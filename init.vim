@@ -42,6 +42,8 @@ call plug#begin()
     Plug 'kristijanhusak/vim-dadbod-ui'
     " Markdown
     Plug 'preservim/vim-markdown'
+    " Terraform
+    Plug 'hashivim/vim-terraform'
 
     " wilder
     function! UpdateRemotePlugins(...)

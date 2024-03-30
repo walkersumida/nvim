@@ -131,6 +131,9 @@ nmap <leader>rn <Plug>(coc-rename)
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType json let b:coc_suggest_disable = 1
 
+autocmd BufWritePre *.tfvars call CocActionAsync('format')
+autocmd BufWritePre *.tf call CocActionAsync('format')
+
 """"""""""""""""""""""""""""""
 " => vim-go
 """"""""""""""""""""""""""""""

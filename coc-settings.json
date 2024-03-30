@@ -39,6 +39,19 @@
         "sql"
       ],
       "shell": true
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf",
+        "tfvars"
+      ],
+      "initializationOptions": {},
+      "settings": {}
     }
   }
 }

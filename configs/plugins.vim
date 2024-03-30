@@ -13,6 +13,7 @@ map <leader>nf :NERDTreeFind<cr>
 " => telescope.nvim
 """"""""""""""""""""""""""""""
 lua << END
+local lga_actions = require("telescope-live-grep-args.actions")
 require('telescope').setup{
   defaults = {
     mappings = {
@@ -46,6 +47,16 @@ require('telescope').setup{
     },
     find_files = {
       hidden = true
+    }
+  },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true,
+      mappings = {
+        i = {
+          ["<C-'>"] = lga_actions.quote_prompt()
+        }
+      }
     }
   }
 }

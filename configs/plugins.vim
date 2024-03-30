@@ -20,11 +20,32 @@ require('telescope').setup{
         ['<C-j>'] = 'move_selection_next',
         ['<C-k>'] = 'move_selection_previous',
       }
+    },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '-u'
+    },
+    file_ignore_patterns = {
+      "node_modules",
+      ".git",
+      ".DS_Store",
+      ".yarn"
     }
   },
   pickers = {
     buffers = {
-      sort_lastused = true
+      sort_lastused = true,
+      sort_mru = true
+    },
+    find_files = {
+      hidden = true
     }
   }
 }

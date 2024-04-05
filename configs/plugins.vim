@@ -258,3 +258,23 @@ require('lualine').setup {
   },
 }
 EOF
+
+""""""""""""""""""""""""""""""
+" => quick-scope
+""""""""""""""""""""""""""""""
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+
+""""""""""""""""""""""""""""""
+" => context.vim
+""""""""""""""""""""""""""""""
+let g:context_filetype_blacklist = ['nerdtree', 'help']
+
+""""""""""""""""""""""""""""""
+" => nvim-treesitter
+""""""""""""""""""""""""""""""
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "go" }
+}
+EOF

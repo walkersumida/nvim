@@ -20,6 +20,10 @@ call plug#begin()
     Plug 'guns/xterm-color-table.vim'
     Plug 'chrisbra/Colorizer'
     Plug 'wellle/context.vim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'unblevable/quick-scope'
+    Plug 'vim-test/vim-test'
 
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui' " requires nvim-nio

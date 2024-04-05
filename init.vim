@@ -8,6 +8,8 @@ call plug#begin()
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
     Plug 'nvim-telescope/telescope-live-grep-args.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-file-browser.nvim'
     Plug 'simeji/winresizer'
     Plug 'tpope/vim-commentary'
     Plug 'airblade/vim-gitgutter'

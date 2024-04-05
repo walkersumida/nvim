@@ -2,6 +2,7 @@
 
 - [nerd-fonts](https://github.com/ryanoasis/nerd-fonts?tab=readme-ov-file#font-installation)
 - [terraform-ls](https://github.com/hashicorp/terraform-ls/blob/main/docs/installation.md)
+- [fd](https://github.com/sharkdp/fd?tab=readme-ov-file#installation)
 
 ## Recommend
 

@@ -57,13 +57,25 @@ require('telescope').setup{
           ["<C-'>"] = lga_actions.quote_prompt()
         }
       }
-    }
+    },
+    file_browser = {
+      theme = "ivy",
+      hijack_netrw = true,
+      no_ignore = true,
+      mappings = {
+        ["i"] = {
+        },
+        ["n"] = {
+        },
+      },
+    },
   }
 }
 require("telescope").load_extension("live_grep_args")
 END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fb :lua require("telescope").extensions.file_browser.file_browser()<cr>
 nnoremap <leader>fk <cmd>Telescope commands<cr>
 nnoremap <leader>gg :lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <Leader>gc <cmd>Telescope current_buffer_fuzzy_find<cr>

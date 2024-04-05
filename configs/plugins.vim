@@ -183,11 +183,9 @@ let MRU_Max_Entries = 400
 map <leader>fh :MRU<CR>
 
 """"""""""""""""""""""""""""""
-" => MRU plugin
+" => vim-floaterm
 """"""""""""""""""""""""""""""
-lua require("toggleterm").setup()
-
-nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+map <silent><c-t> :FloatermToggle<cr>
 
 """"""""""""""""""""""""""""""
 " => git-messenger.vim

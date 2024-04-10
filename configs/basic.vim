@@ -37,6 +37,9 @@ set splitbelow
 
 xnoremap p pgvy
 
+" Execute a macro registered with qq
+nmap <c-.> @q
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM

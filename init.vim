@@ -30,6 +30,10 @@ call plug#begin()
     Plug 'rcarriga/nvim-dap-ui' " requires nvim-nio
     Plug 'nvim-neotest/nvim-nio'
 
+    Plug 'antoinemadec/FixCursorHold.nvim'
+    Plug 'nvim-neotest/neotest'
+    Plug 'nvim-neotest/neotest-go'
+
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
 

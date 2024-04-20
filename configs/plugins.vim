@@ -287,3 +287,21 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = { "lua", "vim", "vimdoc", "markdown", "go" }
 }
 EOF
+
+""""""""""""""""""""""""""""""
+" => neotest
+""""""""""""""""""""""""""""""
+lua << EOF
+require("neotest").setup({
+  adapters = {
+    require("neotest-go")({
+      recursive_run = true
+    })
+  }
+})
+EOF
+
+command NeotestRun lua require("neotest").run.run()
+command NeotestOutput :Neotest output
+command NeotestOutputPanel :Neotest output-panel
+command NeotestSummary :Neotest summary

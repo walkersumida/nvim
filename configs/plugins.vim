@@ -76,7 +76,7 @@ END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fb :Telescope file_browser path=%:p:h select_buffer=true<cr>
-nnoremap <leader>fk <cmd>Telescope commands<cr>
+nnoremap <leader>k <cmd>Telescope commands<cr>
 nnoremap <leader>gg :lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <Leader>gc <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <C-b> <cmd>Telescope buffers<cr>

@@ -16,6 +16,7 @@ call plug#begin()
     Plug 'yegappan/mru'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'github/copilot.vim'
+    Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
     Plug 'voldikss/vim-floaterm'
     Plug 'guns/xterm-color-table.vim'
     Plug 'chrisbra/Colorizer'

@@ -195,6 +195,15 @@ let MRU_Max_Entries = 400
 map <leader>fh :MRU<CR>
 
 """"""""""""""""""""""""""""""
+" => toggleterm.nvim
+""""""""""""""""""""""""""""""
+lua require("toggleterm").setup()
+
+" For example: 2<C-t> will open terminal 2
+nnoremap <leader>t <Cmd>exe v:count1 . "ToggleTerm"<CR>
+
+
+""""""""""""""""""""""""""""""
 " => vim-floaterm
 """"""""""""""""""""""""""""""
 map <silent><c-t> :FloatermToggle<cr>

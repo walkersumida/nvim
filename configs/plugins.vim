@@ -278,6 +278,7 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=und
 """"""""""""""""""""""""""""""
 " => context.vim
 """"""""""""""""""""""""""""""
+let g:context_enabled = 0
 let g:context_filetype_blacklist = ['nerdtree', 'help']
 
 """"""""""""""""""""""""""""""

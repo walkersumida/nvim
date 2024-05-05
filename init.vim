@@ -42,6 +42,7 @@ call plug#begin()
 
     " Git
     Plug 'rhysd/git-messenger.vim'
+    Plug 'linrongbin16/gitlinker.nvim'
     " Go
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'leoluz/nvim-dap-go'

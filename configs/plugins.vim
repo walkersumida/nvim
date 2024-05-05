@@ -306,3 +306,8 @@ command NeotestRun lua require("neotest").run.run()
 command NeotestOutput :Neotest output
 command NeotestOutputPanel :Neotest output-panel
 command NeotestSummary :Neotest summary
+
+""""""""""""""""""""""""""""""
+" => gitlinker
+""""""""""""""""""""""""""""""
+lua require('gitlinker').setup()

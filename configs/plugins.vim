@@ -63,8 +63,10 @@ require('telescope').setup{
       theme = "ivy",
       hijack_netrw = true,
       no_ignore = true,
+      hidden = { file_browser = true, folder_browser = true },
       mappings = {
         ["i"] = {
+          ["<C-h>"] = false
         },
         ["n"] = {
         },

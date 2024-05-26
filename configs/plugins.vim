@@ -221,6 +221,8 @@ nnoremap <leader>t <Cmd>exe v:count1 . "ToggleTerm"<CR>
 """"""""""""""""""""""""""""""
 " => vim-floaterm
 """"""""""""""""""""""""""""""
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
 map <silent><c-t> :FloatermToggle<cr>
 
 """"""""""""""""""""""""""""""

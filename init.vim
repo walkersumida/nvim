@@ -25,6 +25,7 @@ call plug#begin()
     Plug 'neovim/nvim-lspconfig'
     Plug 'unblevable/quick-scope'
     Plug 'vim-test/vim-test'
+    Plug 'dhruvasagar/vim-table-mode'
 
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui' " requires nvim-nio

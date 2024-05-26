@@ -60,6 +60,8 @@ lang en_US.UTF-8
 """"""""""""""""""""""""""""""
 set cursorline
 highlight Cursorline cterm=bold
+set cursorcolumn
+highlight Cursorcolumn cterm=bold
 
 noremap j gj
 noremap k gk

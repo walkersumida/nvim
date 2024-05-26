@@ -318,6 +318,7 @@ require("neotest").setup({
 EOF
 
 command NeotestRun lua require("neotest").run.run()
+command NeotestDebug lua require("neotest").run.run({strategy = "dap"})
 command NeotestOutput :Neotest output
 command NeotestOutputPanel :Neotest output-panel
 command NeotestSummary :Neotest summary

@@ -112,6 +112,16 @@ highlight GitGutterChange ctermfg=yellow ctermbg=darkgrey
 highlight GitGutterDelete ctermfg=red ctermbg=darkgrey
 
 """"""""""""""""""""""""""""""
+" => git-blame.nvim
+""""""""""""""""""""""""""""""
+lua << END
+require('gitblame').setup {
+    enabled = false,
+}
+END
+let g:gitblame_date_format = '%Y-%m-%d %H:%M'
+
+""""""""""""""""""""""""""""""
 " => coc.nvim
 """"""""""""""""""""""""""""""
 let g:coc_global_extensions = [

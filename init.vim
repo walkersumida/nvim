@@ -44,6 +44,7 @@ call plug#begin()
     Plug 'rhysd/git-messenger.vim'
     Plug 'sindrets/diffview.nvim'
     Plug 'linrongbin16/gitlinker.nvim'
+    Plug 'f-person/git-blame.nvim'
     " Go
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'leoluz/nvim-dap-go'

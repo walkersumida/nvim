@@ -280,12 +280,6 @@ highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=unde
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 """"""""""""""""""""""""""""""
-" => context.vim
-""""""""""""""""""""""""""""""
-let g:context_enabled = 0
-let g:context_filetype_blacklist = ['nerdtree', 'help']
-
-""""""""""""""""""""""""""""""
 " => nvim-treesitter
 """"""""""""""""""""""""""""""
 lua << EOF
@@ -294,6 +288,12 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+""""""""""""""""""""""""""""""
+" => nvim-treesitter-context
+""""""""""""""""""""""""""""""
+lua << EOF
+require'treesitter-context'.setup{}
+EOF
 """"""""""""""""""""""""""""""
 " => neotest
 """"""""""""""""""""""""""""""

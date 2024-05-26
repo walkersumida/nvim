@@ -20,8 +20,8 @@ call plug#begin()
     Plug 'voldikss/vim-floaterm'
     Plug 'guns/xterm-color-table.vim'
     Plug 'chrisbra/Colorizer'
-    Plug 'wellle/context.vim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-context'
     Plug 'neovim/nvim-lspconfig'
     Plug 'unblevable/quick-scope'
     Plug 'vim-test/vim-test'

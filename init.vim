@@ -33,7 +33,7 @@ call plug#begin()
 
     Plug 'antoinemadec/FixCursorHold.nvim'
     Plug 'nvim-neotest/neotest'
-    Plug 'nvim-neotest/neotest-go'
+    Plug 'fredrikaverpil/neotest-golang'
 
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'

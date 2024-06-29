@@ -312,15 +312,13 @@ EOF
 lua << EOF
 require("neotest").setup({
   adapters = {
-    require("neotest-go")({
-      recursive_run = true
-    })
+    require("neotest-golang")
   }
 })
 EOF
 
 command NeotestRun lua require("neotest").run.run()
-command NeotestDebug lua require("neotest").run.run({strategy = "dap"})
+command NeotestDebug lua require("neotest").run.run({suite = false, strategy = "dap"})
 command NeotestOutput :Neotest output
 command NeotestOutputPanel :Neotest output-panel
 command NeotestSummary :Neotest summary

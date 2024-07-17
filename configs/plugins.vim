@@ -35,8 +35,8 @@ require('telescope').setup{
       '-u'
     },
     file_ignore_patterns = {
-      "node_modules",
-      ".git",
+      "node_modules/",
+      ".git/",
       ".DS_Store",
       ".yarn"
     }

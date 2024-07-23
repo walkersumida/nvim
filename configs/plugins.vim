@@ -223,7 +223,12 @@ nnoremap <leader>t <Cmd>exe v:count1 . "ToggleTerm"<CR>
 """"""""""""""""""""""""""""""
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
-map <silent><c-t> :FloatermToggle<cr>
+
+nnoremap <silent> tt :FloatermToggle<cr>
+nnoremap <silent> ta :FloatermNew<CR>
+nnoremap <silent> tn :FloatermNext<CR>
+nnoremap <silent> tp :FloatermPrev<CR>
+nnoremap <silent> td :FloatermKill<CR>
 
 """"""""""""""""""""""""""""""
 " => git-messenger.vim

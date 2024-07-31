@@ -78,6 +78,8 @@ require("telescope").load_extension("live_grep_args")
 END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope git_status<cr>
+nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fb :Telescope file_browser path=%:p:h select_buffer=true<cr>
 nnoremap <leader>k <cmd>Telescope commands<cr>
 nnoremap <leader>gg :lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>

@@ -191,8 +191,6 @@ autocmd FileType json let b:coc_suggest_disable = 1
 autocmd BufWritePre *.tfvars call CocActionAsync('format')
 autocmd BufWritePre *.tf call CocActionAsync('format')
 
-nmap <silent> <c-w><c-f> <Plug>(coc-float-jump)
-
 """"""""""""""""""""""""""""""
 " => vim-go
 """"""""""""""""""""""""""""""

@@ -41,7 +41,6 @@ call plug#begin()
     Plug 'tomasiser/vim-code-dark'
 
     " Git
-    Plug 'rhysd/git-messenger.vim'
     Plug 'sindrets/diffview.nvim'
     Plug 'linrongbin16/gitlinker.nvim'
     Plug 'f-person/git-blame.nvim'

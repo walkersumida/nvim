@@ -10,6 +10,33 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 """"""""""""""""""""""""""""""
+" => bookmarks.nvim
+""""""""""""""""""""""""""""""
+lua << END
+require('bookmarks').setup {
+  -- sign_priority = 8,  --set bookmark sign priority to cover other sign
+  save_file = vim.fn.expand "$HOME/.bookmarks", -- bookmarks save file path
+  keywords =  {
+    ["@t"] = "✅", -- mark annotation startswith @t ,signs this icon as `Todo`
+    ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
+    ["@f"] = "🧰", -- mark annotation startswith @f ,signs this icon as `Fix`
+    ["@n"] = "💬", -- mark annotation startswith @n ,signs this icon as `Note`
+  },
+  on_attach = function(bufnr)
+    local bm = require "bookmarks"
+    local map = vim.keymap.set
+    map("n","mm",bm.bookmark_toggle) -- add or remove bookmark at current line
+    map("n","mi",bm.bookmark_ann) -- add or edit mark annotation at current line
+    map("n","mc",bm.bookmark_clean) -- clean all marks in local buffer
+    map("n","mn",bm.bookmark_next) -- jump to next mark in local buffer
+    map("n","mp",bm.bookmark_prev) -- jump to previous mark in local buffer
+    map("n","ml",bm.bookmark_list) -- show marked file list in quickfix window
+    map("n","mx",bm.bookmark_clear_all) -- removes all bookmarks
+  end
+}
+END
+
+""""""""""""""""""""""""""""""
 " => telescope.nvim
 """"""""""""""""""""""""""""""
 lua << END
@@ -75,12 +102,14 @@ require('telescope').setup{
   }
 }
 require("telescope").load_extension("live_grep_args")
+require('telescope').load_extension('bookmarks')
 END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope git_status<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fb :Telescope file_browser path=%:p:h select_buffer=true<cr>
+nnoremap <leader>fm <cmd>Telescope bookmarks list<cr>
 nnoremap <leader>k <cmd>Telescope commands<cr>
 nnoremap <leader>gg :lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <Leader>gc <cmd>Telescope current_buffer_fuzzy_find<cr>

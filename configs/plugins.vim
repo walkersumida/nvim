@@ -41,6 +41,7 @@ END
 """"""""""""""""""""""""""""""
 lua << END
 local lga_actions = require("telescope-live-grep-args.actions")
+local fb_actions = require("telescope").extensions.file_browser.actions
 require('telescope').setup{
   defaults = {
     mappings = {
@@ -82,7 +83,7 @@ require('telescope').setup{
       auto_quoting = true,
       mappings = {
         i = {
-          ["<C-'>"] = lga_actions.quote_prompt()
+          ["<C-i>"] = lga_actions.quote_prompt(),
         }
       }
     },
@@ -96,6 +97,8 @@ require('telescope').setup{
           ["<C-h>"] = false
         },
         ["n"] = {
+          g = false,
+          u = fb_actions.goto_parent_dir
         },
       },
     },
@@ -103,6 +106,7 @@ require('telescope').setup{
 }
 require("telescope").load_extension("live_grep_args")
 require('telescope').load_extension('bookmarks')
+require("telescope").load_extension("file_browser")
 END
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>

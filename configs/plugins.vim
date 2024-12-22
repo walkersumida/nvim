@@ -9,6 +9,16 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
+function! PreventOtherBuffersReplacingNERDTree()
+  if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_tab_\d\+' && bufname('%') !~ 'NERD_tree_tab_\d\+' && winnr('$') > 1
+    let buf = bufnr()
+    execute 'buffer#'
+    execute "normal! \<C-W>w"
+    execute 'buffer' . buf
+  endif
+endfunction
+autocmd BufEnter * call PreventOtherBuffersReplacingNERDTree()
+
 """"""""""""""""""""""""""""""
 " => bookmarks.nvim
 """"""""""""""""""""""""""""""
@@ -21,17 +31,18 @@ require('bookmarks').setup {
     ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
     ["@f"] = "🧰", -- mark annotation startswith @f ,signs this icon as `Fix`
     ["@n"] = "💬", -- mark annotation startswith @n ,signs this icon as `Note`
+    ["@i"] = "💬", -- mark annotation startswith @i ,signs this icon as `Info`
   },
   on_attach = function(bufnr)
     local bm = require "bookmarks"
     local map = vim.keymap.set
-    map("n","mm",bm.bookmark_toggle) -- add or remove bookmark at current line
-    map("n","mi",bm.bookmark_ann) -- add or edit mark annotation at current line
-    map("n","mc",bm.bookmark_clean) -- clean all marks in local buffer
-    map("n","mn",bm.bookmark_next) -- jump to next mark in local buffer
-    map("n","mp",bm.bookmark_prev) -- jump to previous mark in local buffer
-    map("n","ml",bm.bookmark_list) -- show marked file list in quickfix window
-    map("n","mx",bm.bookmark_clear_all) -- removes all bookmarks
+    map("n","<leader>mm",bm.bookmark_ann) -- add or edit mark annotation at current line
+    map("n","<leader>mt",bm.bookmark_toggle) -- add or remove bookmark at current line
+    map("n","<leader>mc",bm.bookmark_clean) -- clean all marks in local buffer
+    map("n","<leader>mn",bm.bookmark_next) -- jump to next mark in local buffer
+    map("n","<leader>mp",bm.bookmark_prev) -- jump to previous mark in local buffer
+    map("n","<leader>ml",bm.bookmark_list) -- show marked file list in quickfix window
+    map("n","<leader>mx",bm.bookmark_clear_all) -- removes all bookmarks
   end
 }
 END

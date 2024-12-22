@@ -171,6 +171,7 @@ let g:gitblame_date_format = '%Y-%m-%d %H:%M'
 " => coc.nvim
 """"""""""""""""""""""""""""""
 let g:coc_global_extensions = [
+  \'coc-diagnostic', 
   \'coc-eslint', 
   \'coc-json',
   \'coc-prettier', 

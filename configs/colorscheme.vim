@@ -1,10 +1,11 @@
+
 """"""""""""""""""""""""""""""
 " => Color scheme
 """"""""""""""""""""""""""""""
 " Go syntax highlighting
-autocmd ColorScheme * highlight goFuncDecl ctermfg=4 guifg=#000080
-autocmd ColorScheme * highlight goNonPrimitiveType ctermfg=2 guifg=#008000
-autocmd ColorScheme * highlight goPackageName ctermfg=2  guifg=#008000
+autocmd ColorScheme * highlight goFuncDecl ctermfg=4 guifg=#379DE2
+autocmd ColorScheme * highlight goNonPrimitiveType ctermfg=2 guifg=#40B200
+autocmd ColorScheme * highlight goPackageName ctermfg=2  guifg=#40B200
 autocmd ColorScheme * highlight goFuncBlock ctermfg=117 guifg=#9cdcfe
 autocmd ColorScheme * highlight goFuncCallArgs ctermfg=117 guifg=#9cdcfe
 autocmd ColorScheme * highlight goField ctermfg=117 guifg=#9cdcfe
@@ -15,6 +16,7 @@ autocmd ColorScheme * highlight goStructLiteralBlock ctermfg=117 guifg=#9cdcfe
 autocmd ColorScheme * highlight goStructLiteralField ctermfg=117 guifg=#9cdcfe
 autocmd ColorScheme * highlight goFuncCallParens ctermfg=176 guifg=#c586c0
 
+" Base color SearchValuesByCustomFieldParams
 colorscheme codedark
 
 """"""""""""""""""""""""""""""

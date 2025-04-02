@@ -65,6 +65,7 @@ require("lazy").setup({
   { "unblevable/quick-scope" },
   { "vim-test/vim-test" },
   { "dhruvasagar/vim-table-mode" },
+  { "mbbill/undotree" },
 
   -- Debugging
   { "mfussenegger/nvim-dap" },

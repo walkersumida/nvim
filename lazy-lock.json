@@ -2,6 +2,7 @@
   "Colorizer": { "branch": "master", "commit": "4927c85d72917dc112453e8d54012aaa90d58e98" },
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "avante.nvim": { "branch": "main", "commit": "89a86f0fc197ec9ffb3663a499432f8df4e4b1e5" },
+  "baleia.nvim": { "branch": "main", "commit": "1b25eac3ac03659c3d3af75c7455e179e5f197f7" },
   "bookmarks.nvim": { "branch": "main", "commit": "0540d52ba64d0ec7677ec1ef14b3624c95a2aaba" },
   "coc.nvim": { "branch": "release", "commit": "964ee1fbe234edb600dad22c93c9721cc30e2151" },
   "copilot.lua": { "branch": "master", "commit": "d661d65b4cab20a5c164f6d9081d91ed324fe4d8" },

@@ -291,6 +291,20 @@ map <leader>dp :lua require('dap').toggle_breakpoint()<CR>
 map <leader>dc :lua require('dap').continue()<CR>
 
 """"""""""""""""""""""""""""""
+" => baleia.nvim
+" https://github.com/mfussenegger/nvim-dap/issues/1114#issuecomment-2407914108
+""""""""""""""""""""""""""""""
+lua << EOF
+vim.g.baleia = require("baleia").setup({ })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+   pattern = "dap-repl",
+   callback = function()
+      vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
+   end,
+})
+EOF
+
+""""""""""""""""""""""""""""""
 " => nvim-dap-ui
 """"""""""""""""""""""""""""""
 lua << EOF

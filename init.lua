@@ -74,6 +74,7 @@ require("lazy").setup({
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
   },
   { "nvim-neotest/nvim-nio" },
+  { "m00qek/baleia.nvim" },
 
   -- Testing
   { "antoinemadec/FixCursorHold.nvim" },

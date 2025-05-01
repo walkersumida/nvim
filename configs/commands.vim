@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""
 " => Commands
 """"""""""""""""""""""""""""""
-command PasteCurBufFilePathToClip let @* = expand('%:p')
-command PasteCurBufPathToClip let @* = expand('%:h')
-command PasteCurBufFileNameToClip let @* = expand('%:t')
+command CopyFilePath let @* = expand('%:p')
+command CopyPath let @* = expand('%:h')
+command CopyFileName let @* = expand('%:t')
 command EncodeSJIS e ++enc=sjis
 command SaveWithoutFormatting noa w

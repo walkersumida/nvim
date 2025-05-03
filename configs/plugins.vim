@@ -168,87 +168,6 @@ END
 let g:gitblame_date_format = '%Y-%m-%d %H:%M'
 
 """"""""""""""""""""""""""""""
-" => coc.nvim
-""""""""""""""""""""""""""""""
-let g:coc_global_extensions = [
-  \'coc-diagnostic', 
-  \'coc-eslint', 
-  \'coc-json',
-  \'coc-prettier', 
-  \'coc-tslint-plugin', 
-  \'coc-tsserver', 
-  \'coc-yaml'
-\]
-
-inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
-inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <silent><expr> <C-space> coc#refresh()
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-function! ChoseAction(actions) abort
-  echo join(map(copy(a:actions), { _, v -> v.text }), ", ") .. ": "
-  let result = getcharstr()
-  let result = filter(a:actions, { _, v -> v.text =~# printf(".*\(%s\).*", result)})
-  return len(result) ? result[0].value : ""
-endfunction
-
-function! CocJumpAction() abort
-  let actions = [
-        \ {"text": "(h)orizontal split", "value": "split"},
-        \ {"text": "(v)ertical split", "value": "vsplit"},
-        \ {"text": "(t)ab", "value": "tabedit"},
-        \ ]
-  return ChoseAction(actions)
-endfunction
-
-" Use <C-]> to choose whether to open in a new window, in a tab, or in the current window when jumping definitions.
-nnoremap <silent> <C-]> :<C-u>call CocActionAsync('jumpDefinition', CocJumpAction())<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-" Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
-autocmd FileType markdown let b:coc_suggest_disable = 1
-autocmd FileType json let b:coc_suggest_disable = 1
-
-autocmd BufWritePre *.tfvars call CocActionAsync('format')
-autocmd BufWritePre *.tf call CocActionAsync('format')
-
-""""""""""""""""""""""""""""""
-" => vim-go
-""""""""""""""""""""""""""""""
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_def_mapping_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_textobj_enabled = 0
-" let g:go_diagnostics_level = 2
-
-""""""""""""""""""""""""""""""
 " => MRU plugin
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
@@ -364,12 +283,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-""""""""""""""""""""""""""""""
-" => nvim-treesitter-context
-""""""""""""""""""""""""""""""
-lua << EOF
-require'treesitter-context'.setup{}
-EOF
 """"""""""""""""""""""""""""""
 " => neotest
 """"""""""""""""""""""""""""""

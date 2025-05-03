@@ -29,8 +29,8 @@ require("lazy").setup({
   { "direnv/direnv.vim" },
   { "preservim/nerdtree" },
   { "nvim-lua/plenary.nvim" },
-  { 
-    "nvim-telescope/telescope.nvim", 
+  {
+    "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
@@ -47,29 +47,30 @@ require("lazy").setup({
   { "tpope/vim-commentary" },
   { "airblade/vim-gitgutter" },
   { "yegappan/mru" },
-  { "neoclide/coc.nvim", branch = "release" },
   { "github/copilot.vim" },
   { "akinsho/toggleterm.nvim", version = "*" },
   { "voldikss/vim-floaterm" },
   { "guns/xterm-color-table.vim" },
   { "chrisbra/Colorizer" },
-  { 
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
-  { 
+  {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" }
   },
-  { "neovim/nvim-lspconfig" },
   { "unblevable/quick-scope" },
   { "vim-test/vim-test" },
   { "dhruvasagar/vim-table-mode" },
   { "mbbill/undotree" },
 
+  -- Load settings from lua/plugins/
+  { import = "plugins" },
+
   -- Debugging
   { "mfussenegger/nvim-dap" },
-  { 
+  {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
   },
@@ -78,7 +79,7 @@ require("lazy").setup({
 
   -- Testing
   { "antoinemadec/FixCursorHold.nvim" },
-  { 
+  {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -86,14 +87,14 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter"
     }
   },
-  { 
+  {
     "fredrikaverpil/neotest-golang",
     version = "v1.10.2",
     dependencies = { "nvim-neotest/neotest" }
   },
 
   -- UI
-  { 
+  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
@@ -103,11 +104,11 @@ require("lazy").setup({
   { "tomasiser/vim-code-dark" },
 
   -- Git
-  { 
+  {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  { 
+  {
     "linrongbin16/gitlinker.nvim",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
@@ -119,30 +120,26 @@ require("lazy").setup({
       require('blame').setup {}
     end,
   },
-  
+
   -- Go
-  { 
-    "fatih/vim-go",
-    build = ":GoUpdateBinaries"
-  },
-  { 
+  {
     "leoluz/nvim-dap-go",
     dependencies = { "mfussenegger/nvim-dap" }
   },
   { "charlespascoe/vim-go-syntax" },
-  
+
   -- SQL
   { "mattn/vim-sqlfmt" },
   { "nanotee/sqls.nvim" },
   { "tpope/vim-dadbod" },
-  { 
+  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = { "tpope/vim-dadbod" }
   },
-  
+
   -- Markdown
   { "preservim/vim-markdown" },
-  
+
   -- Terraform
   { "hashivim/vim-terraform" },
 
@@ -223,8 +220,33 @@ source ~/.config/nvim/configs/filetypes.vim
 source ~/.config/nvim/configs/plugins.vim
 ]])
 
--- Note: You may want to gradually convert these Vim script files to Lua
--- For example:
--- require('config.basic')
--- require('config.colorscheme')
--- etc.
+-- Load LSP and cmp configurations
+require("config.lsp").setup()
+require("config.cmp").setup()
+
+-- Apply float window and LSP highlight settings
+vim.cmd([[
+  augroup CustomHighlight
+    autocmd!
+    autocmd ColorScheme * highlight! FloatBorder guifg=#5E81AC guibg=NONE
+    autocmd ColorScheme * highlight! NormalFloat guibg=#2E3440
+    
+    " LSP reference highlight
+    autocmd ColorScheme * highlight! LspReferenceText guibg=#3B4252
+    autocmd ColorScheme * highlight! LspReferenceRead guibg=#3B4252
+    autocmd ColorScheme * highlight! LspReferenceWrite guibg=#3B4252
+  augroup END
+  
+  " Always clear highlight when switching windows (used in conjunction with per-buffer settings)
+  augroup GlobalLspHighlightClear
+    autocmd!
+    autocmd WinEnter,WinLeave,BufEnter * lua vim.lsp.buf.clear_references()
+  augroup END
+  
+  " Apply immediately
+  highlight! FloatBorder guifg=#5E81AC guibg=NONE
+  highlight! NormalFloat guibg=#2E3440
+  highlight! LspReferenceText guibg=#3B4252
+  highlight! LspReferenceRead guibg=#3B4252
+  highlight! LspReferenceWrite guibg=#3B4252
+]])

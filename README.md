@@ -8,7 +8,6 @@
 
 ## Recommend
 
-- [jq](https://github.com/jqlang/jq)
 - [ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
   - Necessary to use `live_grep` of telescope.nvim
 

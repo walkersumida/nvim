@@ -1,7 +1,45 @@
 local M = {}
 
 function M.setup()
-  -- 1. Go syntax highlighting
+  -- General
+  vim.opt.encoding = 'utf-8'
+  vim.opt.history = 500
+  vim.opt.updatetime = 300
+  vim.opt.autoread = true
+  vim.opt.ignorecase = true
+  vim.opt.smartcase = true
+  vim.opt.splitright = true
+  vim.opt.splitbelow = true
+
+  -- Undo
+  vim.opt.undodir = vim.fn.expand('~/.config/nvim/tmp/undodir')
+  vim.opt.undofile = true
+
+  -- Language
+  vim.cmd('language en_US.UTF-8')
+
+  -- Cursor
+  vim.opt.cursorline = true
+  vim.opt.cursorcolumn = true
+  vim.api.nvim_set_hl(0, 'CursorLine', { bold = true })
+  vim.api.nvim_set_hl(0, 'CursorColumn', { bold = true })
+  vim.opt.whichwrap:append('<,>,h,l')
+
+  -- Clipboard
+  vim.opt.clipboard:append('unnamed')
+
+  -- Indentation
+  vim.opt.expandtab = true
+  vim.opt.smarttab = true
+  vim.opt.shiftwidth = 2
+  vim.opt.tabstop = 2
+  vim.opt.linebreak = true
+  vim.opt.textwidth = 500
+  vim.opt.autoindent = true
+  vim.opt.smartindent = true
+  vim.opt.wrap = true
+
+  -- Go syntax highlighting
   vim.api.nvim_create_autocmd('ColorScheme', {
     pattern = '*',
     callback = function()
@@ -20,15 +58,15 @@ function M.setup()
     end
   })
 
-  -- 2. Colorscheme
+  -- Colorscheme
   vim.cmd.colorscheme('codedark')
 
-  -- 3. Lualine setup
+  -- Lualine setup
   require('lualine').setup {
     options = { theme = 'onedark' },
   }
 
-  -- 4. Helper: SyntaxInfo
+  -- Helper: SyntaxInfo
   local function get_syn_id(transparent)
     local synid = vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)
     if transparent then

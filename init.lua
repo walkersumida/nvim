@@ -1,10 +1,3 @@
--- init.lua
--- lazy.nvim setup
---
-vim.cmd([[
-source ~/.config/nvim/configs/basic.vim
-]])
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -231,6 +224,7 @@ require("lazy").setup({
 -- Load configurations
 require("config.options").setup()
 require("config.keymaps").setup()
+require("config.autocmds").setup()
 require("config.buffer").setup()
 require("config.commands").setup()
 require("config.nerdtree").setup()

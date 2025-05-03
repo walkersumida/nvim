@@ -1,6 +1,35 @@
 local M = {}
 
 function M.setup()
+  -- Save
+  vim.keymap.set('n', '<leader>w', ':w!<CR>')
+
+  -- Clear highlight
+  vim.keymap.set('n', '<leader><CR>', ':noh<CR>', { silent = true })
+
+  -- Visual paste (p)
+  vim.keymap.set('x', 'p', 'pgvy')
+
+  -- Execute macro @q
+  vim.keymap.set('n', '<C-.>', '@q')
+
+  -- Move visual lines
+  vim.keymap.set('n', 'j', 'gj')
+  vim.keymap.set('n', 'k', 'gk')
+  vim.keymap.set('n', '<Down>', 'gj')
+  vim.keymap.set('n', '<Up>', 'gk')
+
+  -- Terminal keymaps
+  local function set_terminal_keymaps()
+    local opts = { buffer = 0 }
+    vim.keymap.set('t', '<C-\\>', [[<C-\><C-n>]], opts)
+  end
+
+  vim.api.nvim_create_autocmd('TermOpen', {
+    pattern = 'term://*',
+    callback = set_terminal_keymaps,
+  })
+
   -- Normal mode
   vim.keymap.set('n', 'sh', ':<C-u>sp<CR>')
   vim.keymap.set('n', 'sv', ':<C-u>vs<CR>')

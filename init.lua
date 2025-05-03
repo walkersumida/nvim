@@ -234,14 +234,32 @@ source ~/.config/nvim/configs/colorscheme.vim
 source ~/.config/nvim/configs/keybinds.vim
 source ~/.config/nvim/configs/commands.vim
 source ~/.config/nvim/configs/filetypes.vim
-source ~/.config/nvim/configs/plugins.vim
 ]])
 
--- Load LSP and cmp configurations
+-- Load configurations
+require("config.nerdtree").setup()
+require("config.telescope").setup()
 require("config.lsp").setup()
 require("config.cmp").setup()
 require("config.neotest").setup()
 require("config.nvim-coverage").setup()
+require("config.bookmarks").setup()
+require("config.git-blame").setup()
+require("config.nvim-dap").setup()
+require("config.toggleterm").setup()
+require("config.baleia").setup()
+require("config.nvim-dap-ui").setup()
+require("config.nvim-dap-go").setup()
+require("config.lualine").setup()
+require("config.nvim-treesitter").setup()
+require("config.gitlinker").setup()
+require("config.wilder").setup()
+require("config.vim-dadbod-ui").setup()
+require("config.gitgutter").setup()
+require("config.git-messenger").setup()
+require("config.quick-scope").setup()
+require("config.vim-floaterm").setup()
+require("config.buffer").setup()
 
 -- Apply float window and LSP highlight settings
 vim.cmd([[

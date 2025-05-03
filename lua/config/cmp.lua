@@ -1,5 +1,3 @@
--- Completion engine settings
-
 local M = {}
 
 function M.setup()

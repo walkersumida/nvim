@@ -104,35 +104,33 @@ function M.setup()
     end, { buffer = bufnr, desc = "Next diagnostic" })
   end
 
-  -- Implementation of jump action (equivalent to CocJumpAction() in coc.nvim)
-  local function jump_definition_with_choice()
-    local actions = {
-      { text = "(h)orizontal split", value = "split" },
-      { text = "(v)ertical split",   value = "vsplit" },
-      { text = "(t)ab",              value = "tabedit" },
-    }
+  local function jump_definition_with_keypress()
+    print("Press v for vsplit, h for split, t for tabedit (default: current window)")
 
-    vim.ui.select(actions, {
-      prompt = "Choose action:",
-      format_item = function(item) return item.text end,
-    }, function(choice)
-      if choice then
-        if choice.value == "split" then
-          vim.cmd("split")
-          vim.lsp.buf.definition()
-        elseif choice.value == "vsplit" then
-          vim.cmd("vsplit")
-          vim.lsp.buf.definition()
-        elseif choice.value == "tabedit" then
-          vim.cmd("tabedit")
-          vim.lsp.buf.definition()
-        end
-      end
-    end)
+    local ok, key = pcall(vim.fn.getchar)
+    if not ok then
+      print("Cancelled")
+      return
+    end
+
+    -- Convert to string (getchar returns a number if it's a single-byte char)
+    key = type(key) == "number" and vim.fn.nr2char(key) or key
+
+    if key == "v" then
+      vim.cmd("vsplit")
+    elseif key == "h" then
+      vim.cmd("split")
+    elseif key == "t" then
+      vim.cmd("tabedit")
+    else
+      print("Opening in current window")
+    end
+
+    vim.lsp.buf.definition()
   end
 
   -- Custom jump setting for <C-]>
-  vim.keymap.set('n', '<C-]>', jump_definition_with_choice, { noremap = true, desc = "Definition with split choice" })
+  vim.keymap.set('n', '<C-]>', jump_definition_with_keypress, { noremap = true, desc = "Definition with split choice" })
 
   -- Server settings
   -- TypeScript

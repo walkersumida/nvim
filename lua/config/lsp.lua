@@ -270,6 +270,14 @@ function M.setup()
     end,
   })
 
+  -- Auto format for Lua language
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.lua" },
+    callback = function()
+      vim.lsp.buf.format()
+    end,
+  })
+
   -- Disable completion for Markdown and JSON (migrated from coc.nvim settings)
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "json" },

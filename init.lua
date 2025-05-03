@@ -48,7 +48,7 @@ require("lazy").setup({
   { "airblade/vim-gitgutter" },
   { "yegappan/mru" },
   { "github/copilot.vim" },
-  { "akinsho/toggleterm.nvim", version = "*" },
+  { "akinsho/toggleterm.nvim",   version = "*" },
   { "voldikss/vim-floaterm" },
   { "guns/xterm-color-table.vim" },
   { "chrisbra/Colorizer" },
@@ -150,6 +150,7 @@ require("lazy").setup({
       vim.cmd("UpdateRemotePlugins")
     end
   },
+
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -161,8 +162,8 @@ require("lazy").setup({
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- timeout in milliseconds
-        temperature = 0, -- adjust if needed
+        timeout = 30000,  -- timeout in milliseconds
+        temperature = 0,  -- adjust if needed
         max_tokens = 4096,
         -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
       },
@@ -176,12 +177,12 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
-      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -209,6 +210,22 @@ require("lazy").setup({
       },
     },
   },
+
+  {
+    'andythigpen/nvim-coverage',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('coverage').setup({
+        lang = {
+          go = {
+            coverage_file = vim.fn.getcwd() .. '/coverage.out',
+          }
+        }
+      })
+    end,
+  }
 })
 
 -- Load Vim script configurations
@@ -223,6 +240,7 @@ source ~/.config/nvim/configs/plugins.vim
 -- Load LSP and cmp configurations
 require("config.lsp").setup()
 require("config.cmp").setup()
+require("config.nvim-coverage").setup()
 
 -- Apply float window and LSP highlight settings
 vim.cmd([[
@@ -230,19 +248,19 @@ vim.cmd([[
     autocmd!
     autocmd ColorScheme * highlight! FloatBorder guifg=#5E81AC guibg=NONE
     autocmd ColorScheme * highlight! NormalFloat guibg=#2E3440
-    
+
     " LSP reference highlight
     autocmd ColorScheme * highlight! LspReferenceText guibg=#3B4252
     autocmd ColorScheme * highlight! LspReferenceRead guibg=#3B4252
     autocmd ColorScheme * highlight! LspReferenceWrite guibg=#3B4252
   augroup END
-  
+
   " Always clear highlight when switching windows (used in conjunction with per-buffer settings)
   augroup GlobalLspHighlightClear
     autocmd!
     autocmd WinEnter,WinLeave,BufEnter * lua vim.lsp.buf.clear_references()
   augroup END
-  
+
   " Apply immediately
   highlight! FloatBorder guifg=#5E81AC guibg=NONE
   highlight! NormalFloat guibg=#2E3440

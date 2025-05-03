@@ -289,7 +289,9 @@ EOF
 lua << EOF
 require("neotest").setup({
   adapters = {
-    require("neotest-golang")
+    require("neotest-golang")({
+      go_test_args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
+    })
   }
 })
 EOF

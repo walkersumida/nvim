@@ -14,9 +14,9 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-buffer",   -- Completion from buffer
-      "hrsh7th/cmp-path",     -- Path completion
-      "hrsh7th/cmp-cmdline",  -- Command line completion
+      "hrsh7th/cmp-buffer",       -- Completion from buffer
+      "hrsh7th/cmp-path",         -- Path completion
+      "hrsh7th/cmp-cmdline",      -- Command line completion
       "saadparwaiz1/cmp_luasnip", -- Snippet completion
     },
   },

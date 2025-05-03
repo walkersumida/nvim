@@ -240,6 +240,7 @@ source ~/.config/nvim/configs/plugins.vim
 -- Load LSP and cmp configurations
 require("config.lsp").setup()
 require("config.cmp").setup()
+require("config.neotest").setup()
 require("config.nvim-coverage").setup()
 
 -- Apply float window and LSP highlight settings

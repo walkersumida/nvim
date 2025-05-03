@@ -284,25 +284,6 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 """"""""""""""""""""""""""""""
-" => neotest
-""""""""""""""""""""""""""""""
-lua << EOF
-require("neotest").setup({
-  adapters = {
-    require("neotest-golang")({
-      go_test_args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
-    })
-  }
-})
-EOF
-
-command NeotestRun lua require("neotest").run.run()
-command NeotestDebug lua require("neotest").run.run({suite = false, strategy = "dap"})
-command NeotestOutput :Neotest output
-command NeotestOutputPanel :Neotest output-panel
-command NeotestSummary :Neotest summary
-
-""""""""""""""""""""""""""""""
 " => gitlinker
 """"""""""""""""""""""""""""""
 lua require('gitlinker').setup()

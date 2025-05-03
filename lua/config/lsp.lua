@@ -15,13 +15,6 @@ function M.setup()
     return orig_util_apply_text_edits(edits, bufnr, offset_encoding)
   end
 
-  -- Common border settings
-  local border = "rounded"
-
-  -- winborder setting added in Neovim 0.11.0 and later
-  -- Set borders by default for all floating windows
-  vim.o.winborder = border
-
   -- Definition of highlight colors (global)
   vim.cmd([[
     highlight! LspReferenceText guibg=#3B4252
@@ -63,7 +56,7 @@ function M.setup()
   })
 
   -- Clear highlights when buffer or window changes (global)
-  vim.api.nvim_create_autocmd({"BufLeave", "WinLeave", "WinEnter"}, {
+  vim.api.nvim_create_autocmd({ "BufLeave", "WinLeave", "WinEnter" }, {
     group = global_lsp_highlight_grp,
     pattern = "*",
     callback = function()
@@ -90,19 +83,33 @@ function M.setup()
       })
     end, { buffer = bufnr, desc = "Go to references (with preview)" })
     vim.keymap.set("n", "K", function()
-      vim.lsp.buf.hover()
+      vim.lsp.buf.hover({
+        border = "rounded",
+      })
     end, { buffer = bufnr, desc = "Show hover documentation" })
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
-    vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Previous diagnostic" })
-    vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next diagnostic" })
+    vim.keymap.set("n", "[g", function()
+      vim.diagnostic.goto_prev({
+        float = {
+          border = "rounded",
+        },
+      })
+    end, { buffer = bufnr, desc = "Previous diagnostic" })
+    vim.keymap.set("n", "]g", function()
+      vim.diagnostic.goto_next({
+        float = {
+          border = "rounded",
+        },
+      })
+    end, { buffer = bufnr, desc = "Next diagnostic" })
   end
 
   -- Implementation of jump action (equivalent to CocJumpAction() in coc.nvim)
   local function jump_definition_with_choice()
     local actions = {
       { text = "(h)orizontal split", value = "split" },
-      { text = "(v)ertical split", value = "vsplit" },
-      { text = "(t)ab", value = "tabedit" },
+      { text = "(v)ertical split",   value = "vsplit" },
+      { text = "(t)ab",              value = "tabedit" },
     }
 
     vim.ui.select(actions, {
@@ -194,15 +201,15 @@ function M.setup()
   lspconfig.sqls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = {"sqls", "-config", vim.fn.expand("$HOME/.config/sqls/config.yml")},
-    filetypes = {"sql"},
+    cmd = { "sqls", "-config", vim.fn.expand("$HOME/.config/sqls/config.yml") },
+    filetypes = { "sql" },
   })
 
   -- Terraform (terraform-ls)
   lspconfig.terraformls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = {"terraform", "tf", "tfvars"},
+    filetypes = { "terraform", "tf", "tfvars" },
   })
 
   -- Lua (lua-language-server)

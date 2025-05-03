@@ -231,12 +231,14 @@ require("lazy").setup({
 -- Load Vim script configurations
 vim.cmd([[
 source ~/.config/nvim/configs/colorscheme.vim
-source ~/.config/nvim/configs/keybinds.vim
 source ~/.config/nvim/configs/commands.vim
 source ~/.config/nvim/configs/filetypes.vim
 ]])
 
 -- Load configurations
+require("config.keymaps").setup()
+require("config.buffer").setup()
+require("config.commands").setup()
 require("config.nerdtree").setup()
 require("config.telescope").setup()
 require("config.lsp").setup()
@@ -259,7 +261,7 @@ require("config.gitgutter").setup()
 require("config.git-messenger").setup()
 require("config.quick-scope").setup()
 require("config.vim-floaterm").setup()
-require("config.buffer").setup()
+require("config.vim-markdown").setup()
 
 -- Apply float window and LSP highlight settings
 vim.cmd([[

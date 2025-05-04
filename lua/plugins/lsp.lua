@@ -33,10 +33,8 @@ return {
 
   -- Formatter and linter
   {
-    "nvimtools/none-ls.nvim", -- Fork of null-ls
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    'stevearc/conform.nvim',
+    opts = {},
   },
 
   -- Schema store (used for JSON and YAML completion)

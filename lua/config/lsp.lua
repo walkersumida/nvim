@@ -230,56 +230,26 @@ function M.setup()
     },
   })
 
-  -- none-ls settings (formatter and linter) - updated from null-ls
-  local null_ls = require("null-ls")
-
-  null_ls.setup({
-    debug = true,
-    sources = {
-      -- Formatter
-      null_ls.builtins.formatting.prettier,
-      null_ls.builtins.formatting.gofmt,
-      null_ls.builtins.formatting.goimports,
-      -- Linter - use eslint_d for better performance
-      null_ls.builtins.formatting.eslint_d,
-      null_ls.builtins.code_actions.eslint_d,
-      null_ls.builtins.diagnostics.eslint_d,
-      null_ls.builtins.diagnostics.golangci_lint,
+  require("conform").setup({
+    formatters_by_ft = {
+      lua = { "stylua" },
+      go = { "goimports", "gofmt" },
+      python = { "isort", "black" },
+      rust = { "rustfmt", lsp_format = "fallback" },
+      javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+      typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
     },
-    -- Auto format on save
-    on_attach = function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.format({ bufnr = bufnr })
-          end,
-        })
-      end
-    end,
+    format_on_save = {
+      timeout_ms = 5000,
+      lsp_format = "fallback",
+    },
   })
 
-  -- Auto format for Terraform files (migrated from coc.nvim settings)
+  -- Auto format on save
   vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.tfvars", "*.tf" },
-    callback = function()
-      vim.lsp.buf.format()
-    end,
-  })
-
-  -- Auto format for Go language
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go" },
-    callback = function()
-      vim.lsp.buf.format()
-    end,
-  })
-
-  -- Auto format for Lua language
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.lua" },
-    callback = function()
-      vim.lsp.buf.format()
+    pattern = { "*" },
+    callback = function(args)
+      require("conform").format({ bufnr = args.buf })
     end,
   })
 

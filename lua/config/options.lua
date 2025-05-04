@@ -39,6 +39,8 @@ function M.setup()
   vim.opt.smartindent = true
   vim.opt.wrap = true
 
+  vim.o.winborder = 'none'
+
   -- Go syntax highlighting
   vim.api.nvim_create_autocmd('ColorScheme', {
     pattern = '*',

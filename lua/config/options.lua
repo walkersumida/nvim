@@ -4,7 +4,6 @@ function M.setup()
   -- General
   vim.opt.encoding = 'utf-8'
   vim.opt.history = 500
-  vim.opt.updatetime = 300
   vim.opt.autoread = true
   vim.opt.ignorecase = true
   vim.opt.smartcase = true

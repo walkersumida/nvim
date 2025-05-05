@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.o.updatetime = 300
+
 -- Plugin specification
 require("lazy").setup({
   -- Tools

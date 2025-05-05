@@ -6,12 +6,12 @@ function M.setup()
   -- Basic LSP settings
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  capabilities.offsetEncoding = { "utf-16" }
+  capabilities.offsetEncoding = { "utf-8" }
 
   -- Position encoding settings (version-independent method)
   local orig_util_apply_text_edits = vim.lsp.util.apply_text_edits
   vim.lsp.util.apply_text_edits = function(edits, bufnr, offset_encoding)
-    offset_encoding = offset_encoding or "utf-16"
+    offset_encoding = offset_encoding or "utf-8"
     return orig_util_apply_text_edits(edits, bufnr, offset_encoding)
   end
 
@@ -198,7 +198,10 @@ function M.setup()
   -- SQL (sqls)
   lspconfig.sqls.setup({
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+    end,
     cmd = { "sqls", "-config", vim.fn.expand("$HOME/.config/sqls/config.yml") },
     filetypes = { "sql" },
   })

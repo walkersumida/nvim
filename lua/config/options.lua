@@ -2,6 +2,9 @@ local M = {}
 
 function M.setup()
   -- General
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
+  vim.o.updatetime = 300
   vim.opt.encoding = 'utf-8'
   vim.opt.history = 500
   vim.opt.autoread = true
@@ -58,14 +61,6 @@ function M.setup()
       vim.cmd('highlight goFuncCallParens ctermfg=176 guifg=#c586c0')
     end
   })
-
-  -- Colorscheme
-  vim.cmd.colorscheme('codedark')
-
-  -- Lualine setup
-  require('lualine').setup {
-    options = { theme = 'onedark' },
-  }
 
   -- Helper: SyntaxInfo
   local function get_syn_id(transparent)

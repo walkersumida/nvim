@@ -12,11 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Set leader key before lazy setup
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-vim.o.updatetime = 300
+-- Load basic configs before lazy setup
+require("config.options").setup()
 
 -- Plugin specification
 require("lazy").setup({
@@ -224,7 +221,7 @@ require("lazy").setup({
 })
 
 -- Load configurations
-require("config.options").setup()
+require("config.colorscheme").setup()
 require("config.keymaps").setup()
 require("config.autocmds").setup()
 require("config.buffer").setup()

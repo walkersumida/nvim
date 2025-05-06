@@ -26,6 +26,14 @@ git clone git@github.com:walkersumida/nvim.git
 nvim
 ```
 
+### Confirm Linters
+
+After starting Neovim, check the linters with the following command. Install linters as needed.
+
+```sh
+:ConformInfo
+```
+
 ## Included Plugins
 
 TODO

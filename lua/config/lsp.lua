@@ -39,7 +39,7 @@ function M.setup()
           return
         end
       end
-    end
+    end,
   })
 
   vim.api.nvim_create_autocmd("CursorMoved", {
@@ -52,7 +52,7 @@ function M.setup()
       if #clients > 0 then
         vim.lsp.buf.clear_references()
       end
-    end
+    end,
   })
 
   -- Clear highlights when buffer or window changes (global)
@@ -66,7 +66,7 @@ function M.setup()
       if #clients > 0 then
         vim.lsp.buf.clear_references()
       end
-    end
+    end,
   })
 
   -- Key mapping function
@@ -77,7 +77,7 @@ function M.setup()
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to implementation" })
     -- Use Telescope with preview feature when searching for references
     vim.keymap.set("n", "gr", function()
-      require('telescope.builtin').lsp_references({
+      require("telescope.builtin").lsp_references({
         include_declaration = true,
         show_line = false,
       })
@@ -130,7 +130,7 @@ function M.setup()
   end
 
   -- Custom jump setting for <C-]>
-  vim.keymap.set('n', '<C-]>', jump_definition_with_keypress, { noremap = true, desc = "Definition with split choice" })
+  vim.keymap.set("n", "<C-]>", jump_definition_with_keypress, { noremap = true, desc = "Definition with split choice" })
 
   -- Server settings
   -- TypeScript
@@ -144,7 +144,7 @@ function M.setup()
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
-      autoFixOnSave = true
+      autoFixOnSave = true,
     },
   })
 
@@ -154,7 +154,7 @@ function M.setup()
     on_attach = on_attach,
     settings = {
       json = {
-        schemas = require('schemastore').json.schemas(),
+        schemas = require("schemastore").json.schemas(),
         validate = { enable = true },
       },
     },
@@ -235,12 +235,38 @@ function M.setup()
 
   require("conform").setup({
     formatters_by_ft = {
-      lua = { "stylua" },
       go = { "goimports", "gofmt" },
+      javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+      lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
-      javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+      sql = { "sqlfluff" },
       typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+    },
+    formatters = {
+      sqlfluff = {
+        command = "sqlfluff",
+        args = { "fix", "--disable-progress-bar", "--force", "--dialect", "postgres", "$FILENAME" },
+        stdin = false,
+        condition = function(ctx)
+          return vim.fn.executable("sqlfluff") == 1
+        end,
+        require_cwd = false,
+      },
+      stylua = {
+        command = "stylua",
+        args = {
+          "--indent-type",
+          "Spaces",
+          "--indent-width",
+          "2",
+          "--search-parent-directories",
+          "--stdin-filepath",
+          "$FILENAME",
+          "-",
+        },
+        stdin = true,
+      },
     },
     format_on_save = {
       timeout_ms = 5000,

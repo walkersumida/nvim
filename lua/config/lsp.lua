@@ -244,9 +244,6 @@ function M.setup()
       typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
     },
     formatters = {
-      sql_formatter = {
-        command = "sql-formatter",
-      },
       stylua = {
         command = "stylua",
         args = {

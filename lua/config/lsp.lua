@@ -240,18 +240,12 @@ function M.setup()
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
-      sql = { "sqlfluff" },
+      sql = { "sql_formatter" },
       typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
     },
     formatters = {
-      sqlfluff = {
-        command = "sqlfluff",
-        args = { "fix", "--disable-progress-bar", "--force", "--dialect", "postgres", "$FILENAME" },
-        stdin = false,
-        condition = function(ctx)
-          return vim.fn.executable("sqlfluff") == 1
-        end,
-        require_cwd = false,
+      sql_formatter = {
+        command = "sql-formatter",
       },
       stylua = {
         command = "stylua",

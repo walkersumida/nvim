@@ -28,6 +28,8 @@ function M.setup()
   vim.api.nvim_create_user_command("NeotestSummary", function()
     vim.cmd("Neotest summary")
   end, {})
+
+  vim.keymap.set("n", "<leader>nt", "<cmd>NeotestSummary<cr>")
 end
 
 return M

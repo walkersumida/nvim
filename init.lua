@@ -24,15 +24,15 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "nvim-telescope/telescope-live-grep-args.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
   { "tomasky/bookmarks.nvim" },
   { "simeji/winresizer" },
@@ -40,17 +40,17 @@ require("lazy").setup({
   { "airblade/vim-gitgutter" },
   { "yegappan/mru" },
   { "github/copilot.vim" },
-  { "akinsho/toggleterm.nvim",   version = "*" },
+  { "akinsho/toggleterm.nvim", version = "*" },
   { "voldikss/vim-floaterm" },
   { "guns/xterm-color-table.vim" },
   { "chrisbra/Colorizer" },
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate"
+    build = ":TSUpdate",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" }
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   { "unblevable/quick-scope" },
   { "vim-test/vim-test" },
@@ -64,7 +64,7 @@ require("lazy").setup({
   { "mfussenegger/nvim-dap" },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
   },
   { "nvim-neotest/nvim-nio" },
   { "m00qek/baleia.nvim" },
@@ -76,19 +76,19 @@ require("lazy").setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter"
-    }
+      "nvim-treesitter/nvim-treesitter",
+    },
   },
   {
     "fredrikaverpil/neotest-golang",
     version = "v1.10.2",
-    dependencies = { "nvim-neotest/neotest" }
+    dependencies = { "nvim-neotest/neotest" },
   },
 
   -- UI
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   { "nvim-tree/nvim-web-devicons" },
 
@@ -98,25 +98,25 @@ require("lazy").setup({
   -- Git
   {
     "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "linrongbin16/gitlinker.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   { "f-person/git-blame.nvim" },
   {
     "FabijanZulj/blame.nvim",
     lazy = false,
     config = function()
-      require('blame').setup {}
+      require("blame").setup({})
     end,
   },
 
   -- Go
   {
     "leoluz/nvim-dap-go",
-    dependencies = { "mfussenegger/nvim-dap" }
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   { "charlespascoe/vim-go-syntax" },
 
@@ -126,7 +126,7 @@ require("lazy").setup({
   { "tpope/vim-dadbod" },
   {
     "kristijanhusak/vim-dadbod-ui",
-    dependencies = { "tpope/vim-dadbod" }
+    dependencies = { "tpope/vim-dadbod" },
   },
 
   -- Markdown
@@ -140,7 +140,7 @@ require("lazy").setup({
     "gelguy/wilder.nvim",
     build = function()
       vim.cmd("UpdateRemotePlugins")
-    end
+    end,
   },
 
   {
@@ -154,8 +154,8 @@ require("lazy").setup({
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000,  -- timeout in milliseconds
-        temperature = 0,  -- adjust if needed
+        timeout = 30000, -- timeout in milliseconds
+        temperature = 0, -- adjust if needed
         max_tokens = 4096,
         -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
       },
@@ -169,12 +169,12 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
-      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -194,7 +194,7 @@ require("lazy").setup({
       },
       {
         -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
+        "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "Avante" },
         },
@@ -204,20 +204,20 @@ require("lazy").setup({
   },
 
   {
-    'andythigpen/nvim-coverage',
+    "andythigpen/nvim-coverage",
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      "nvim-lua/plenary.nvim",
     },
     config = function()
-      require('coverage').setup({
+      require("coverage").setup({
         lang = {
           go = {
-            coverage_file = vim.fn.getcwd() .. '/coverage.out',
-          }
-        }
+            coverage_file = vim.fn.getcwd() .. "/coverage.out",
+          },
+        },
       })
     end,
-  }
+  },
 })
 
 -- Load configurations

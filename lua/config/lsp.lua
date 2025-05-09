@@ -259,8 +259,7 @@ function M.setup()
         stdin = true,
       },
     },
-    format_on_save = {
-      timeout_ms = 5000,
+    format_after_save = {
       lsp_format = "fallback",
     },
   })
@@ -269,7 +268,10 @@ function M.setup()
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },
     callback = function(args)
-      require("conform").format({ bufnr = args.buf })
+      require("conform").format({
+        bufnr = args.buf,
+        async = true,
+      })
     end,
   })
 

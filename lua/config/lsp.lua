@@ -264,10 +264,14 @@ function M.setup()
     },
   })
 
-  -- Auto format on save
+  -- Automatically format on save asynchronously
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },
     callback = function(args)
+      local ft = vim.bo[args.buf].filetype
+      if ft == "sql" then
+        return -- Skip formatting for SQL files
+      end
       require("conform").format({
         bufnr = args.buf,
         async = true,
@@ -275,7 +279,17 @@ function M.setup()
     end,
   })
 
-  -- Disable completion for Markdown and JSON (migrated from coc.nvim settings)
+  -- Automatically format on save synchronously
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.sql" },
+    callback = function(args)
+      require("conform").format({
+        bufnr = args.buf,
+      })
+    end,
+  })
+
+  -- Disable completion
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "json" },
     callback = function()

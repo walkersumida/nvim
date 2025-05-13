@@ -249,6 +249,7 @@ require("config.git-messenger").setup()
 require("config.quick-scope").setup()
 require("config.vim-floaterm").setup()
 require("config.vim-markdown").setup()
+require("config.avante").setup()
 
 -- Apply float window and LSP highlight settings
 vim.cmd([[

@@ -20,6 +20,14 @@ return {
     follow_url_func = function(url)
       vim.fn.jobstart({ "open", url })
     end,
+    attachments = {
+      img_folder = "assets/images",
+
+      ---@return string
+      img_name_func = function()
+        return string.format("%s", os.date("%Y%m%d%H%M%S"))
+      end,
+    },
   },
   config = function(_, opts)
     require("obsidian").setup(opts)

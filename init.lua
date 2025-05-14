@@ -150,14 +150,21 @@ require("lazy").setup({
     opts = {
       -- add any opts here
       -- for example
-      provider = "openai",
-      openai = {
-        endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- timeout in milliseconds
-        temperature = 0, -- adjust if needed
+      -- provider = "openai",
+      -- openai = {
+      --   endpoint = "https://api.openai.com/v1",
+      --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+      --   timeout = 30000, -- timeout in milliseconds
+      --   temperature = 0, -- adjust if needed
+      --   max_tokens = 4096,
+      --   -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+      -- },
+      provider = "claude",
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-7-sonnet-20250219",
+        temperature = 0,
         max_tokens = 4096,
-        -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -175,6 +182,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua", -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua", -- for providers='copilot'
+      "MeanderingProgrammer/render-markdown.nvim",
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -192,31 +200,7 @@ require("lazy").setup({
           },
         },
       },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "Avante" },
-        },
-        ft = { "Avante" },
-      },
     },
-  },
-
-  {
-    "andythigpen/nvim-coverage",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("coverage").setup({
-        lang = {
-          go = {
-            coverage_file = vim.fn.getcwd() .. "/coverage.out",
-          },
-        },
-      })
-    end,
   },
 })
 

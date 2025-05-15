@@ -195,6 +195,21 @@ function M.setup()
     },
   })
 
+  -- Python (pyright)
+  lspconfig.pyright.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = "basic",
+          autoImportCompletions = true,
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
+  })
+
   -- SQL (sqls)
   lspconfig.sqls.setup({
     capabilities = capabilities,

@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-    end
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -18,9 +18,10 @@ return {
           "ts_ls",
           "terraformls",
           "lua_ls",
+          "pyright",
         },
         automatic_installation = true,
       })
-    end
+    end,
   },
 }

@@ -1,6 +1,5 @@
 return {
   -- Tools
-  { "direnv/direnv.vim" },
   { "preservim/nerdtree" },
   { "nvim-lua/plenary.nvim" },
   {

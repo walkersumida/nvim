@@ -54,5 +54,6 @@ return {
         vim.cmd("ObsidianNew " .. name)
       end
     end, { desc = "Prompt for a name and run :ObsidianNew [NAME]" })
+    vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show links" })
   end,
 }

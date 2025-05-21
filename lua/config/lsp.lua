@@ -74,7 +74,12 @@ function M.setup()
     -- Diagnostics and navigation
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
     vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Go to type definition" })
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to implementation" })
+    vim.keymap.set("n", "gi", function()
+      require("telescope.builtin").lsp_implementations({
+        show_line = false,
+        include_declaration = true,
+      })
+    end, { buffer = bufnr, desc = "Go to implementation" })
     -- Use Telescope with preview feature when searching for references
     vim.keymap.set("n", "gr", function()
       require("telescope.builtin").lsp_references({

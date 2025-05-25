@@ -36,7 +36,7 @@ function M.setup()
         sort_mru = true,
       },
       find_files = {
-        hidden = true,
+        find_command = { "rg", "--files", "--hidden", "--sortr", "modified" },
       },
     },
     extensions = {

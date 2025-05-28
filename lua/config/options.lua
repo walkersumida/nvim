@@ -43,25 +43,6 @@ function M.setup()
 
   vim.o.winborder = "none"
 
-  -- Go syntax highlighting
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-      vim.cmd("highlight goFuncDecl ctermfg=4 guifg=#379DE2")
-      vim.cmd("highlight goNonPrimitiveType ctermfg=2 guifg=#40B200")
-      vim.cmd("highlight goPackageName ctermfg=2 guifg=#40B200")
-      vim.cmd("highlight goFuncBlock ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goFuncCallArgs ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goField ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goImportedPackages ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goSliceOrArrayType ctermfg=176 guifg=#c586c0")
-      vim.cmd("highlight goBraces ctermfg=176 guifg=#c586c0")
-      vim.cmd("highlight goStructLiteralBlock ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goStructLiteralField ctermfg=117 guifg=#9cdcfe")
-      vim.cmd("highlight goFuncCallParens ctermfg=176 guifg=#c586c0")
-    end,
-  })
-
   -- Helper: SyntaxInfo
   local function get_syn_id(transparent)
     local synid = vim.fn.synID(vim.fn.line("."), vim.fn.col("."), 1)

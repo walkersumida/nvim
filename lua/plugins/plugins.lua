@@ -96,7 +96,6 @@ return {
     "leoluz/nvim-dap-go",
     dependencies = { "mfussenegger/nvim-dap" },
   },
-  { "charlespascoe/vim-go-syntax" },
 
   -- SQL
   { "mattn/vim-sqlfmt" },

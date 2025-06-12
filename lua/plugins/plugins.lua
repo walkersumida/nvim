@@ -78,10 +78,6 @@ return {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  {
-    "linrongbin16/gitlinker.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
   { "f-person/git-blame.nvim" },
   {
     "FabijanZulj/blame.nvim",

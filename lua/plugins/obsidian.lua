@@ -36,6 +36,12 @@ return {
         return string.format("%s", os.date("%Y%m%d%H%M%S"))
       end,
     },
+    ui = {
+      checkboxes = {
+        [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+        ["x"] = { char = "", hl_group = "ObsidianDone" },
+      },
+    },
   },
   config = function(_, opts)
     require("obsidian").setup(opts)

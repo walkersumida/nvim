@@ -2,7 +2,17 @@ local M = {}
 
 function M.setup()
   require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "go" },
+    ensure_installed = {
+      "lua",
+      "vim",
+      "vimdoc",
+      "markdown",
+      "markdown_inline",
+      "go",
+      "typescript",
+      "javascript",
+      "tsx",
+    },
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = { "markdown" },

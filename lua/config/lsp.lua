@@ -260,7 +260,7 @@ function M.setup()
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
-      sql = { "sql_formatter" },
+      -- sql = { "sql_formatter" },
       typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
     },
     formatters = {
@@ -284,27 +284,19 @@ function M.setup()
     },
   })
 
-  -- Automatically format on save asynchronously
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },
     callback = function(args)
       local ft = vim.bo[args.buf].filetype
-      if ft == "sql" then
-        return -- Skip formatting for SQL files
-      end
-      require("conform").format({
-        bufnr = args.buf,
-        async = true,
-      })
-    end,
-  })
+      local isAsync = true
 
-  -- Automatically format on save synchronously
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.sql" },
-    callback = function(args)
+      if ft == "sql" then
+        isAsync = false
+      end
+
       require("conform").format({
         bufnr = args.buf,
+        async = isAsync,
       })
     end,
   })

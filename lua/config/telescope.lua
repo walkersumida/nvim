@@ -69,6 +69,11 @@ function M.setup()
   require("telescope").load_extension("bookmarks")
   require("telescope").load_extension("file_browser")
   vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+  vim.keymap.set("n", "<leader>fa", function()
+    require("telescope.builtin").find_files({
+      find_command = { "rg", "--files", "--hidden", "--no-ignore", "--sortr", "modified" },
+    })
+  end)
   vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_status<cr>")
   vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<cr>")
   vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<cr>")

@@ -3,7 +3,7 @@ return {
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 
   opts = {
-    file_types = { "Avante", "markdown" },
+    file_types = { "markdown" },
   },
-  ft = { "Avante", "markdown" },
+  ft = { "markdown" },
 }

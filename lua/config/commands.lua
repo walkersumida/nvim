@@ -6,7 +6,7 @@ function M.setup()
   end, {})
 
   vim.api.nvim_create_user_command("CopyFilePathWithLine", function()
-    local filepath = vim.fn.expand("%:p")
+    local filepath = vim.fn.expand("%:.")
     local linenum = vim.fn.line(".")
     local full = string.format("%s:%dL", filepath, linenum)
     vim.fn.setreg("*", full)

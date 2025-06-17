@@ -54,6 +54,26 @@ function M.setup()
   vim.keymap.set("n", "<C-k>", "<C-W>k")
   vim.keymap.set("n", "<C-h>", "<C-W>h")
   vim.keymap.set("n", "<C-l>", "<C-W>l")
+
+  -- Ctrl+G: Show file info and copy file path with line number
+  vim.keymap.set("n", "<C-g>", function()
+    -- Execute default Ctrl+G behavior - show file info
+    local line = vim.fn.line(".")
+    local total_lines = vim.fn.line("$")
+    local percent = math.floor((line / total_lines) * 100)
+    print(
+      string.format(
+        '"%s" %d lines --%d%%-- %d,%d All',
+        vim.fn.expand("%:t"),
+        total_lines,
+        percent,
+        line,
+        vim.fn.col(".")
+      )
+    )
+    -- Execute CopyFilePathWithLine command
+    vim.cmd("CopyFilePathWithLine")
+  end)
 end
 
 return M

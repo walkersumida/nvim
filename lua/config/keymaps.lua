@@ -64,7 +64,7 @@ function M.setup()
     print(
       string.format(
         '"%s" %d lines --%d%%-- %d,%d All',
-        vim.fn.expand("%:t"),
+        vim.fn.expand("%"),
         total_lines,
         percent,
         line,

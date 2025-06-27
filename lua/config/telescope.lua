@@ -5,6 +5,11 @@ function M.setup()
   local fb_actions = require("telescope").extensions.file_browser.actions
   require("telescope").setup({
     defaults = {
+      layout_config = {
+        horizontal = {
+          preview_width = 0.6,
+        },
+      },
       mappings = {
         i = {
           ["<C-j>"] = "move_selection_next",

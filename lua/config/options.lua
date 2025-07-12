@@ -23,8 +23,6 @@ function M.setup()
   -- Cursor
   vim.opt.cursorline = true
   vim.opt.cursorcolumn = true
-  vim.api.nvim_set_hl(0, "CursorLine", { bold = true })
-  vim.api.nvim_set_hl(0, "CursorColumn", { bold = true })
   vim.opt.whichwrap:append("<,>,h,l")
 
   -- Clipboard

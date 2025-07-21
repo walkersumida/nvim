@@ -7,6 +7,11 @@ function M.setup()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   capabilities.offsetEncoding = { "utf-8" }
+  capabilities.workspace = {
+    didChangeWatchedFiles = {
+      dynamicRegistration = true,
+    },
+  }
 
   -- Position encoding settings (version-independent method)
   local orig_util_apply_text_edits = vim.lsp.util.apply_text_edits
@@ -183,6 +188,7 @@ function M.setup()
   lspconfig.gopls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     settings = {
       gopls = {
         analyses = {
@@ -193,10 +199,20 @@ function M.setup()
         gofumpt = true,
         usePlaceholders = true,
         completeUnimported = true,
+        directoryFilters = { "-**/node_modules", "-**/.git" },
+        codelenses = {
+          gc_details = true,
+          generate = true,
+          regenerate_cgo = true,
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
+        },
       },
     },
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 50,
     },
   })
 
@@ -309,6 +325,41 @@ function M.setup()
       require("cmp").setup.buffer({ enabled = false })
     end,
   })
+
+  -- LSP workspace refresh command (generic for any LSP server)
+  vim.api.nvim_create_user_command("LspRefresh", function()
+    -- Get active LSP clients for current buffer
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    
+    if #clients == 0 then
+      print("No active LSP clients for current buffer")
+      return
+    end
+    
+    local refreshed_clients = {}
+    
+    for _, client in ipairs(clients) do
+      -- Send workspace/didChangeConfiguration notification
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+      table.insert(refreshed_clients, client.name)
+    end
+    
+    -- Reload buffers after a short wait
+    vim.defer_fn(function()
+      for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) ~= "" then
+          vim.api.nvim_buf_call(bufnr, function()
+            vim.cmd("silent! checktime")
+          end)
+        end
+      end
+      
+      -- Display which LSP servers were refreshed
+      if #refreshed_clients > 0 then
+        print(string.format("LSP workspace refreshed: %s", table.concat(refreshed_clients, ", ")))
+      end
+    end, 100)
+  end, { desc = "Force refresh LSP workspace for current buffer" })
 end
 
 return M

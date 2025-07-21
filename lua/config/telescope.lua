@@ -43,6 +43,13 @@ function M.setup()
       find_files = {
         find_command = { "rg", "--files", "--hidden", "--sortr", "modified" },
       },
+      jumplist = {
+        theme = "ivy",
+        show_line = false,
+        layout_config = {
+          preview_width = 0.5,
+        },
+      },
     },
     extensions = {
       live_grep_args = {
@@ -84,6 +91,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<cr>")
   vim.keymap.set("n", "<leader>fh", "<cmd>Telescope oldfiles theme=ivy<cr>")
   vim.keymap.set("n", "<leader>fm", "<cmd>Telescope bookmarks list<cr>")
+  vim.keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<cr>")
   vim.keymap.set("n", "<leader>k", "<cmd>Telescope commands<cr>")
   vim.keymap.set("n", "<leader>gg", function()
     require("telescope").extensions.live_grep_args.live_grep_args()

@@ -12,10 +12,12 @@ function M.setup()
       "typescript",
       "javascript",
       "tsx",
+      "sql",
     },
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = { "markdown" },
+      disable = { "sql" },
+      additional_vim_regex_highlighting = { "markdown", "sql" },
     },
     sync_install = false,
     ignore_install = {},

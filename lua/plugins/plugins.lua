@@ -96,11 +96,6 @@ return {
   -- SQL
   { "mattn/vim-sqlfmt" },
   { "nanotee/sqls.nvim" },
-  { "tpope/vim-dadbod" },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = { "tpope/vim-dadbod" },
-  },
 
   -- Markdown
   { "preservim/vim-markdown" },

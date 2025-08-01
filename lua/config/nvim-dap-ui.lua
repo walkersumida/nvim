@@ -1,16 +1,19 @@
 local M = {}
 
 function M.setup()
-  require('dapui').setup()
-  require 'dap'.listeners.before['event_initialized']['custom'] = function(session, body)
-    require 'dapui'.open()
+  local dap = require("dap")
+  local dapui = require("dapui")
+
+  dapui.setup()
+
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
   end
-  require 'dap'.listeners.before['event_terminated']['custom'] = function(session, body)
-    require 'dapui'.close()
-  end
-  vim.api.nvim_set_keymap('n', '<leader>dk', ":lua require('dapui').eval()<CR>", { noremap = true, silent = true })
-  vim.api.nvim_create_user_command('DapUIOpen', "lua require('dapui').open()", {})
-  vim.api.nvim_create_user_command('DapUIClose', "lua require('dapui').close()", {})
+
+  vim.keymap.set("n", "<leader>du", dapui.toggle, { silent = true, desc = "Toggle DAP UI" })
+  vim.api.nvim_set_keymap("n", "<leader>dk", ":lua require('dapui').eval()<CR>", { noremap = true, silent = true })
+  vim.api.nvim_create_user_command("DapUIOpen", dapui.open, { desc = "Open DAP UI" })
+  vim.api.nvim_create_user_command("DapUIClose", dapui.close, { desc = "Close DAP UI" })
 end
 
 return M

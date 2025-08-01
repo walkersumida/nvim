@@ -1,7 +1,11 @@
 local M = {}
 
 function M.setup()
-  require('dap.ext.vscode').load_launchjs(nil, { cpptools = { "c", "cpp" } })
+  require('dap.ext.vscode').load_launchjs(nil, { 
+    cpptools = { "c", "cpp" },
+    ["pwa-chrome"] = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+    ["pwa-node"] = { "typescript", "javascript" }
+  })
   local map = vim.api.nvim_set_keymap
   local opts = { noremap = true, silent = true }
 

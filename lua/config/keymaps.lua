@@ -11,7 +11,7 @@ function M.setup()
   vim.keymap.set("x", "p", "pgvy")
 
   -- Execute macro @q
-  vim.keymap.set("n", "<C-.>", "@q")
+  vim.keymap.set("n", "<C-q>", "@q")
 
   -- Move visual lines
   vim.keymap.set({ "n", "v" }, "j", "gj")

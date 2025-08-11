@@ -31,7 +31,19 @@ function M.setup()
   -- CursorLine and CursorColumn settings
   vim.api.nvim_set_hl(0, "CursorLine", { underline = true })
   vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#2e2e2e" })
+
+  vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#1a4721" })
+  vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#5d1a1e" })
+  vim.api.nvim_set_hl(0, "DiffChange", { bg = "#382d0f" })
+  vim.api.nvim_set_hl(0, "DiffText", { bg = "#4b3c0f" })
+
+  -- GitSigns colors (GitGutter style)
+  vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#009900" })
+  vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#ffff00" })
+  vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff2222" })
+  vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#ff2222" })
+  vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#ffff00" })
+  vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#999999" })
 end
 
 return M
-

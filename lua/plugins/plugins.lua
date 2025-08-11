@@ -74,10 +74,6 @@ return {
   { "tomasiser/vim-code-dark" },
 
   -- Git
-  {
-    "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
   { "f-person/git-blame.nvim" },
   {
     "FabijanZulj/blame.nvim",

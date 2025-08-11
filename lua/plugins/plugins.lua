@@ -33,7 +33,6 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
-  { "unblevable/quick-scope" },
   { "vim-test/vim-test" },
   { "dhruvasagar/vim-table-mode" },
   { "mbbill/undotree" },

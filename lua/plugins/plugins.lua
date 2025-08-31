@@ -15,7 +15,6 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
   },
-  { "tomasky/bookmarks.nvim" },
   { "simeji/winresizer" },
   { "tpope/vim-commentary" },
   { "airblade/vim-gitgutter" },

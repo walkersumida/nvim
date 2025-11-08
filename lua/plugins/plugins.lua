@@ -61,13 +61,6 @@ return {
     dependencies = { "nvim-neotest/neotest" },
   },
 
-  -- UI
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-  { "nvim-tree/nvim-web-devicons" },
-
   -- Color scheme
   { "tomasiser/vim-code-dark" },
 

@@ -71,6 +71,7 @@ return {
     vim.keymap.set("n", "<leader>oc", function()
       local name = vim.fn.input("Name: ")
       if name ~= "" then
+        name = name:gsub(" ", "_")
         vim.cmd("Obsidian new " .. name)
       end
     end, { desc = "Prompt for a name and run :Obsidian new [NAME]" })

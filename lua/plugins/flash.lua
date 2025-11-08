@@ -3,7 +3,8 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
-    config = function()
+    config = function(_, opts)
+      require("flash").setup(opts)
       vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = "#aaaaaa" })
     end,
 

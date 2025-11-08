@@ -96,6 +96,7 @@ function M.setup()
   end)
   vim.keymap.set("n", "<leader>gc", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
   vim.keymap.set("n", "<C-b>", "<cmd>Telescope buffers<cr>")
+  vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 end
 
 return M

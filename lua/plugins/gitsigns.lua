@@ -41,6 +41,17 @@ return {
             gitsigns.setqflist("all")
           end)
 
+          map("n", "<leader>hp", gitsigns.preview_hunk)
+          map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+          map("n", "<leader>hb", function()
+            gitsigns.blame_line({ full = true })
+          end)
+
+          map("n", "<leader>hd", gitsigns.diffthis)
+          map("n", "<leader>hD", function()
+            gitsigns.diffthis("~")
+          end)
+
           -- Telescope integration - current buffer
           map("n", "<leader>fd", function()
             -- Try different approaches

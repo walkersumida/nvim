@@ -9,9 +9,9 @@ function M.setup()
       autocmd ColorScheme * highlight! NormalFloat guibg=#2E3440
       
       " LSP reference highlight
-      autocmd ColorScheme * highlight! LspReferenceText guibg=#3B4252
-      autocmd ColorScheme * highlight! LspReferenceRead guibg=#3B4252
-      autocmd ColorScheme * highlight! LspReferenceWrite guibg=#3B4252
+      autocmd ColorScheme * highlight! LspReferenceText guibg=#5E81AC
+      autocmd ColorScheme * highlight! LspReferenceRead guibg=#5E81AC
+      autocmd ColorScheme * highlight! LspReferenceWrite guibg=#5E81AC
     augroup END
     
     " Always clear highlight when switching windows (used in conjunction with per-buffer settings)
@@ -23,9 +23,9 @@ function M.setup()
     " Apply immediately
     highlight! FloatBorder guifg=#5E81AC guibg=NONE
     highlight! NormalFloat guibg=#2E3440
-    highlight! LspReferenceText guibg=#3B4252
-    highlight! LspReferenceRead guibg=#3B4252
-    highlight! LspReferenceWrite guibg=#3B4252
+    highlight! LspReferenceText guibg=#5E81AC
+    highlight! LspReferenceRead guibg=#5E81AC
+    highlight! LspReferenceWrite guibg=#5E81AC
   ]])
 
   -- CursorLine and CursorColumn settings

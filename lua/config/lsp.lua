@@ -22,9 +22,9 @@ function M.setup()
 
   -- Definition of highlight colors (global)
   vim.cmd([[
-    highlight! LspReferenceText guibg=#3B4252
-    highlight! LspReferenceRead guibg=#3B4252
-    highlight! LspReferenceWrite guibg=#3B4252
+    highlight! LspReferenceText guibg=#5E81AC
+    highlight! LspReferenceRead guibg=#5E81AC
+    highlight! LspReferenceWrite guibg=#5E81AC
   ]])
 
   -- Global document highlight settings
@@ -330,20 +330,20 @@ function M.setup()
   vim.api.nvim_create_user_command("LspRefresh", function()
     -- Get active LSP clients for current buffer
     local clients = vim.lsp.get_clients({ bufnr = 0 })
-    
+
     if #clients == 0 then
       print("No active LSP clients for current buffer")
       return
     end
-    
+
     local refreshed_clients = {}
-    
+
     for _, client in ipairs(clients) do
       -- Send workspace/didChangeConfiguration notification
       client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
       table.insert(refreshed_clients, client.name)
     end
-    
+
     -- Reload buffers after a short wait
     vim.defer_fn(function()
       for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
@@ -353,7 +353,7 @@ function M.setup()
           end)
         end
       end
-      
+
       -- Display which LSP servers were refreshed
       if #refreshed_clients > 0 then
         print(string.format("LSP workspace refreshed: %s", table.concat(refreshed_clients, ", ")))

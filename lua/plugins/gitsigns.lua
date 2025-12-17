@@ -152,7 +152,18 @@ return {
             local finders = require("telescope.finders")
             local conf = require("telescope.config").values
             local previewers = require("telescope.previewers")
-            local make_entry = require("telescope.make_entry")
+
+            -- Check if ref is a commit hash (not a branch name)
+            local function is_commit_hash(ref)
+              -- Check if it exists as a branch
+              vim.fn.system({ "git", "show-ref", "--verify", "--quiet", "refs/heads/" .. ref })
+              if vim.v.shell_error == 0 then
+                return false -- It's a branch name
+              end
+              -- Check if it's a valid commit
+              vim.fn.system({ "git", "rev-parse", "--verify", "--quiet", ref .. "^{commit}" })
+              return vim.v.shell_error == 0
+            end
 
             -- Get the current base branch or ask user for input
             local base_branch = vim.fn.input("Base branch (default: develop): ", "develop")
@@ -160,14 +171,22 @@ return {
               base_branch = "develop"
             end
 
-            require("gitsigns").change_base(base_branch, true)
+            -- Determine diff range based on whether input is commit hash or branch
+            local diff_range
+            if is_commit_hash(base_branch) then
+              diff_range = base_branch .. "^..HEAD" -- Include the specified commit
+              require("gitsigns").change_base(base_branch .. "^", true)
+            else
+              diff_range = base_branch .. "...HEAD" -- merge-base for branches
+              require("gitsigns").change_base(base_branch, true)
+            end
 
             -- Get all changed files with their hunks
             local cmd = vim.fn.systemlist({
               "git",
               "diff",
               "--name-only",
-              base_branch .. "...HEAD",
+              diff_range,
             })
 
             local changed_files = {}
@@ -190,7 +209,7 @@ return {
                 "git",
                 "diff",
                 "--unified=0",
-                base_branch .. "...HEAD",
+                diff_range,
                 "--",
                 file,
               })
@@ -273,7 +292,7 @@ return {
                       local diff_output = vim.fn.systemlist({
                         "git",
                         "diff",
-                        base_branch .. "...HEAD",
+                        diff_range,
                         "--",
                         filename,
                       })

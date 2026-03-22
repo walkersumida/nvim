@@ -272,12 +272,12 @@ function M.setup()
   require("conform").setup({
     formatters_by_ft = {
       go = { "goimports", "gofmt" },
-      javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
       -- sql = { "sql_formatter" },
-      typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
     },
     formatters = {
       stylua = {
@@ -295,9 +295,6 @@ function M.setup()
         stdin = true,
       },
     },
-    format_after_save = {
-      lsp_format = "fallback",
-    },
   })
 
   vim.api.nvim_create_autocmd("BufWritePre", {
@@ -313,6 +310,7 @@ function M.setup()
       require("conform").format({
         bufnr = args.buf,
         async = isAsync,
+        lsp_format = "fallback",
       })
     end,
   })

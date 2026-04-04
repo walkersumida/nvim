@@ -65,7 +65,7 @@ function M.setup()
     local total_lines = vim.fn.line("$")
     local percent = math.floor((line / total_lines) * 100)
     print(
-      string.format('"%s" %d lines --%d%%-- %d,%d All', vim.fn.expand("%"), total_lines, percent, line, vim.fn.col("."))
+      string.format('"%s" %d lines --%d%%-- %d,%d All', vim.fn.expand("%:."), total_lines, percent, line, vim.fn.col("."))
     )
   end)
 end

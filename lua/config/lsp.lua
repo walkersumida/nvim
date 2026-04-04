@@ -249,6 +249,15 @@ function M.setup()
     filetypes = { "terraform", "tf", "tfvars" },
   })
 
+  -- Swift (sourcekit-lsp)
+  lspconfig.sourcekit.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = { "xcrun", "sourcekit-lsp" },
+    filetypes = { "swift" },
+    root_dir = lspconfig.util.root_pattern("Package.swift", ".git", "*.xcodeproj", "*.xcworkspace"),
+  })
+
   -- Lua (lua-language-server)
   lspconfig.lua_ls.setup({
     capabilities = capabilities,
@@ -276,6 +285,7 @@ function M.setup()
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
+      swift = { "swift_format" },
       -- sql = { "sql_formatter" },
       typescript = { "prettierd", "prettier", stop_after_first = true },
     },

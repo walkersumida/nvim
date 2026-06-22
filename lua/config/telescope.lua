@@ -79,7 +79,51 @@ function M.setup()
   })
   require("telescope").load_extension("live_grep_args")
   require("telescope").load_extension("file_browser")
-  vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+  -- Wrap long lines in the preview window
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "TelescopePreviewerLoaded",
+    callback = function()
+      vim.wo.wrap = true
+    end,
+  })
+  vim.keymap.set("n", "<leader>ff", function()
+    local builtin = require("telescope.builtin")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+    local line_nr, col_nr
+
+    builtin.find_files({
+      -- When input is `filename:line(:col)`, exclude the line/col part from the filter
+      on_input_filter_cb = function(prompt)
+        local file, l, c = prompt:match("^(.-):(%d+):?(%d*)$")
+        if l then
+          line_nr = tonumber(l)
+          col_nr = tonumber(c) -- nil if no column
+          return { prompt = file }
+        end
+        line_nr, col_nr = nil, nil
+        return { prompt = prompt }
+      end,
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          local entry = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+          if not entry then
+            return
+          end
+          vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+          if line_nr then
+            local ok = pcall(vim.api.nvim_win_set_cursor, 0, { line_nr, (col_nr or 1) - 1 })
+            if not ok then
+              vim.cmd(tostring(line_nr))
+            end
+            vim.cmd("normal! zz")
+          end
+        end)
+        return true
+      end,
+    })
+  end)
   vim.keymap.set("n", "<leader>fa", function()
     require("telescope.builtin").find_files({
       find_command = { "rg", "--files", "--hidden", "--no-ignore", "--sortr", "modified" },

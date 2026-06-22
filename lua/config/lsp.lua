@@ -207,6 +207,13 @@ function M.setup()
         staticcheck = true,
         gofumpt = true,
         usePlaceholders = true,
+        vulncheck = "Imports",
+        hints = {
+          parameterNames = true,
+          assignVariableTypes = true,
+          constantValues = true,
+          rangeVariableTypes = true,
+        },
         completeUnimported = true,
         directoryFilters = { "-**/node_modules", "-**/.git" },
         codelenses = {

@@ -114,6 +114,15 @@ function M.setup()
     end, { buffer = bufnr, desc = "Next diagnostic" })
   end
 
+  -- Inlay hints (e.g. parameter names at call sites): enable globally for all buffers
+  vim.lsp.inlay_hint.enable(true)
+
+  -- Toggle inlay hints globally
+  vim.api.nvim_create_user_command("ToggleInlayHints", function()
+    local enabled = vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(not enabled)
+  end, { desc = "Toggle inlay hints (all buffers)" })
+
   local function jump_definition_with_keypress()
     print("Press v for vsplit, h for split, t for tabedit (default: current window)")
 

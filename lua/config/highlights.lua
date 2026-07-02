@@ -7,7 +7,17 @@ function M.setup()
       autocmd!
       autocmd ColorScheme * highlight! FloatBorder guifg=#5E81AC guibg=NONE
       autocmd ColorScheme * highlight! NormalFloat guibg=#2E3440
-      
+
+      " Make backgrounds transparent (let the terminal's transparency show through in nvim / match iTerm2 behavior)
+      " ctermbg=NONE is required because termguicolors=off (without it the 256-color bg stays opaque)
+      autocmd ColorScheme * highlight! Normal ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! NormalNC ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! SignColumn ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! LineNr ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! FoldColumn ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! EndOfBuffer ctermbg=NONE guibg=NONE
+      autocmd ColorScheme * highlight! NonText ctermbg=NONE guibg=NONE
+
       " LSP reference highlight
       autocmd ColorScheme * highlight! LspReferenceText guibg=#5E81AC
       autocmd ColorScheme * highlight! LspReferenceRead guibg=#5E81AC
@@ -23,6 +33,13 @@ function M.setup()
     " Apply immediately
     highlight! FloatBorder guifg=#5E81AC guibg=NONE
     highlight! NormalFloat guibg=#2E3440
+    highlight! Normal ctermbg=NONE guibg=NONE
+    highlight! NormalNC ctermbg=NONE guibg=NONE
+    highlight! SignColumn ctermbg=NONE guibg=NONE
+    highlight! LineNr ctermbg=NONE guibg=NONE
+    highlight! FoldColumn ctermbg=NONE guibg=NONE
+    highlight! EndOfBuffer ctermbg=NONE guibg=NONE
+    highlight! NonText ctermbg=NONE guibg=NONE
     highlight! LspReferenceText guibg=#5E81AC
     highlight! LspReferenceRead guibg=#5E81AC
     highlight! LspReferenceWrite guibg=#5E81AC

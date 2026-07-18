@@ -5,9 +5,6 @@ function M.setup()
   local fb_actions = require("telescope").extensions.file_browser.actions
   require("telescope").setup({
     defaults = {
-      -- telescope 0.1.x depends on the old nvim-treesitter API (ft_to_lang / configs),
-      -- which was removed on the main branch. Disable treesitter preview highlighting
-      -- and fall back to vim regex syntax to avoid the `ft_to_lang (a nil value)` error.
       preview = {
         treesitter = false,
       },
@@ -136,7 +133,7 @@ function M.setup()
     })
   end)
   vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_status<cr>")
-  vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<cr>")
+  vim.keymap.set("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<cr>")
   vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<cr>")
   vim.keymap.set("n", "<leader>fh", "<cmd>Telescope oldfiles theme=ivy<cr>")
   vim.keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<cr>")

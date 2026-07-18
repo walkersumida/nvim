@@ -5,9 +5,6 @@ function M.setup()
   local fb_actions = require("telescope").extensions.file_browser.actions
   require("telescope").setup({
     defaults = {
-      preview = {
-        treesitter = false,
-      },
       layout_config = {
         horizontal = {
           preview_width = 0.6,
@@ -80,6 +77,18 @@ function M.setup()
       },
     },
   })
+  local function ts_api_available()
+    local ok, parsers = pcall(require, "nvim-treesitter.parsers")
+    return ok and type(parsers.ft_to_lang) == "function"
+  end
+  if not ts_api_available() then
+    local ok, putils = pcall(require, "telescope.previewers.utils")
+    if ok then
+      putils.ts_highlighter = function()
+        return false
+      end
+    end
+  end
   require("telescope").load_extension("live_grep_args")
   require("telescope").load_extension("file_browser")
   -- Wrap long lines in the preview window

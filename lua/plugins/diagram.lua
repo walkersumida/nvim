@@ -9,7 +9,7 @@ return {
       -- image every time you leave insert mode, so it is dropped and re-added
       -- (guarded on real changes) in the config function below.
       events = {
-        render_buffer = { "TextChanged", "BufWinEnter" },
+        render_buffer = { "TextChanged", "BufWinEnter", "WinEnter" },
       },
       renderer_options = {
         -- scale: resolution multiplier for the mmdc PNG output; higher = sharper when enlarged.

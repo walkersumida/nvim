@@ -1,6 +1,7 @@
 ## Require
 
-- Neovim >= 0.11.0
+- Neovim >= 0.12.0
+- [tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md) (required by nvim-treesitter `main` to compile parsers; `brew install tree-sitter-cli`)
 - [nerd-fonts](https://github.com/ryanoasis/nerd-fonts?tab=readme-ov-file#font-installation)
 - [terraform-ls](https://github.com/hashicorp/terraform-ls/blob/main/docs/installation.md)
 - [fd](https://github.com/sharkdp/fd?tab=readme-ov-file#installation)

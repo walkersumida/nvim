@@ -99,14 +99,16 @@ function M.setup()
     end, { buffer = bufnr, desc = "Show hover documentation" })
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
     vim.keymap.set("n", "[g", function()
-      vim.diagnostic.goto_prev({
+      vim.diagnostic.jump({
+        count = -1,
         float = {
           border = "rounded",
         },
       })
     end, { buffer = bufnr, desc = "Previous diagnostic" })
     vim.keymap.set("n", "]g", function()
-      vim.diagnostic.goto_next({
+      vim.diagnostic.jump({
+        count = 1,
         float = {
           border = "rounded",
         },

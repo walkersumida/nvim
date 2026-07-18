@@ -105,7 +105,7 @@ return {
                         -- Set filetype for syntax highlighting
                         local ft = vim.filetype.match({ filename = filename })
                         if ft then
-                          vim.api.nvim_buf_set_option(preview_bufnr, "filetype", ft)
+                          vim.bo[preview_bufnr].filetype = ft
                         end
 
                         -- Find corresponding hunk and highlight range
@@ -283,7 +283,7 @@ return {
                     -- Set filetype for syntax highlighting
                     local ft = vim.filetype.match({ filename = filename })
                     if ft then
-                      vim.api.nvim_buf_set_option(preview_bufnr, "filetype", ft)
+                      vim.bo[preview_bufnr].filetype = ft
                     end
 
                     -- Highlight all hunks if available

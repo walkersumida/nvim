@@ -1,28 +1,40 @@
 local M = {}
 
 function M.setup()
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-      "lua",
-      "vim",
-      "vimdoc",
-      "markdown",
-      "markdown_inline",
-      "go",
-      "typescript",
-      "javascript",
-      "tsx",
-      "sql",
-    },
-    highlight = {
-      enable = true,
-      disable = { "sql" },
-      additional_vim_regex_highlighting = { "markdown", "sql" },
-    },
-    sync_install = false,
-    ignore_install = {},
-    auto_install = false,
-    modules = {},
+  local ensure_installed = {
+    "lua",
+    "vim",
+    "vimdoc",
+    "markdown",
+    "markdown_inline",
+    "go",
+    "typescript",
+    "javascript",
+    "tsx",
+    "sql",
+  }
+
+  -- Install only the parsers that are missing (compiled locally, async).
+  local ok, cfg = pcall(require, "nvim-treesitter.config")
+  local installed = ok and cfg.get_installed() or {}
+  local to_install = vim.tbl_filter(function(p)
+    return not vim.tbl_contains(installed, p)
+  end, ensure_installed)
+  if #to_install > 0 then
+    require("nvim-treesitter").install(to_install)
+  end
+
+  -- Enable treesitter highlighting per filetype.
+  -- sql is intentionally excluded (kept on vim regex syntax, matching the old `disable = { "sql" }`).
+  local skip = { sql = true }
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("TreesitterHighlight", { clear = true }),
+    callback = function(args)
+      if skip[vim.bo[args.buf].filetype] then
+        return
+      end
+      pcall(vim.treesitter.start)
+    end,
   })
 
   vim.api.nvim_create_autocmd("VimEnter", {

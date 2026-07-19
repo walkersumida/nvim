@@ -4,12 +4,9 @@ return {
     dependencies = { "3rd/image.nvim" },
     ft = { "markdown" },
     opts = {
-      -- diagram.nvim clears then re-renders (via mmdc) on every trigger without
-      -- checking whether the content changed. Keeping InsertLeave here flickers the
-      -- image every time you leave insert mode, so it is dropped and re-added
-      -- (guarded on real changes) in the config function below.
       events = {
-        render_buffer = { "TextChanged", "BufWinEnter", "WinEnter" },
+        render_buffer = { "TextChanged", "BufWinEnter" },
+        clear_buffer = {},
       },
       renderer_options = {
         -- scale: resolution multiplier for the mmdc PNG output; higher = sharper when enlarged.
@@ -18,8 +15,6 @@ return {
     },
     config = function(_, opts)
       require("diagram").setup(opts)
-      -- Re-render on InsertLeave only when the buffer actually changed during insert
-      -- (record changedtick on enter, compare on leave) to avoid a no-op flicker.
       local grp = vim.api.nvim_create_augroup("DiagramInsertGuard", { clear = true })
       vim.api.nvim_create_autocmd("InsertEnter", {
         group = grp,

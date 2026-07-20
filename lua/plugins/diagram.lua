@@ -10,7 +10,7 @@ return {
       },
       renderer_options = {
         -- scale: resolution multiplier for the mmdc PNG output; higher = sharper when enlarged.
-        mermaid = { theme = "forest", scale = 4 },
+        mermaid = { theme = "dark", background = "transparent", scale = 4 },
       },
     },
     config = function(_, opts)

@@ -12,6 +12,12 @@ function M.setup()
     "javascript",
     "tsx",
     "sql",
+    "json",
+    "yaml",
+    "bash",
+    "css",
+    "html",
+    "terraform",
   }
 
   -- Install only the parsers that are missing (compiled locally, async).

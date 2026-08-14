@@ -95,6 +95,19 @@ return {
           end, { buffer = a.buf, desc = "Preview diagram under cursor" })
         end,
       })
+      -- image.nvim clears every image whose window is outside the current
+      -- tabpage and does not restore them on the way back, so a diagram is lost
+      -- after a round trip through another tab. Its clear runs in a scheduled
+      -- callback, so the re-render must be scheduled too or it is undone.
+      vim.api.nvim_create_autocmd("TabEnter", {
+        group = grp,
+        callback = function()
+          if vim.bo.filetype ~= "markdown" then return end
+          vim.schedule(function()
+            require("diagram").render()
+          end)
+        end,
+      })
       vim.api.nvim_create_autocmd("InsertEnter", {
         group = grp,
         callback = function(a)

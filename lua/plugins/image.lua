@@ -33,6 +33,21 @@ return {
           return s
         end
       end
+
+      -- An image keeps the geometry recorded when it was drawn, so once the
+      -- window's buffer becomes shorter than that line the renderer passes a
+      -- non-existent line to screenpos() and aborts with E966. Skip such
+      -- images; returning false runs image.nvim's usual clear path.
+      local renderer = require("image/renderer")
+      local original_render = renderer.render
+      renderer.render = function(image)
+        if image.window and vim.api.nvim_win_is_valid(image.window) then
+          local buf = vim.api.nvim_win_get_buf(image.window)
+          local y = image.geometry and image.geometry.y or 0
+          if y + 1 > vim.api.nvim_buf_line_count(buf) then return false end
+        end
+        return original_render(image)
+      end
     end,
   },
 }

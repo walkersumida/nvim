@@ -62,11 +62,13 @@ return {
 
     vim.keymap.set("n", "<leader>ob", "<cmd>Obsidian backlinks<CR>", { desc = "Show backlinks" })
     vim.keymap.set("n", "<leader>ot", function()
-      local tag = vim.fn.input("Tags: ")
+      local tag = vim.fn.input("Tags (empty for all): ")
       if tag ~= "" then
         vim.cmd("Obsidian tags " .. tag)
+      else
+        vim.cmd("Obsidian tags")
       end
-    end, { desc = "Prompt for a tag and run :Obsidian tags [TAG ...]" })
+    end, { desc = "Prompt for a tag, or list all tags when empty" })
     vim.keymap.set("n", "<leader>or", "<cmd>Obsidian rename<CR>", { desc = "Rename file" })
     vim.keymap.set("n", "<leader>oc", function()
       local name = vim.fn.input("Name: ")

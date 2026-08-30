@@ -27,6 +27,22 @@ function M.setup()
   vim.api.nvim_create_user_command("SaveWithoutFormatting", function()
     vim.cmd("noa w")
   end, {})
+
+  vim.api.nvim_create_user_command("DeleteCurrentFile", function()
+    local filepath = vim.fn.expand("%:p")
+    if filepath == "" then
+      vim.notify("No file associated with this buffer", vim.log.levels.WARN)
+      return
+    end
+    if vim.fn.confirm("Delete " .. filepath .. "?", "&Yes\n&No", 2) ~= 1 then
+      return
+    end
+    if vim.fn.delete(filepath) ~= 0 then
+      vim.notify("Failed to delete: " .. filepath, vim.log.levels.ERROR)
+      return
+    end
+    vim.cmd("Bclose")
+  end, {})
 end
 
 return M

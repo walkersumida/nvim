@@ -3,6 +3,16 @@ local M = {}
 function M.setup()
   local lga_actions = require("telescope-live-grep-args.actions")
   local fb_actions = require("telescope").extensions.file_browser.actions
+  -- A selected file opens its parent directory
+  local function open_in_oil(prompt_bufnr)
+    local entry = require("telescope.actions.state").get_selected_entry()
+    if not entry then
+      return
+    end
+    require("telescope.actions").close(prompt_bufnr)
+    local dir = vim.fn.isdirectory(entry.path) == 1 and entry.path or vim.fs.dirname(entry.path)
+    require("oil").open(dir)
+  end
   require("telescope").setup({
     defaults = {
       layout_config = {
@@ -62,7 +72,7 @@ function M.setup()
       },
       file_browser = {
         theme = "ivy",
-        hijack_netrw = true,
+        hijack_netrw = false,
         no_ignore = true,
         hidden = { file_browser = true, folder_browser = true },
         mappings = {
@@ -72,6 +82,8 @@ function M.setup()
           ["n"] = {
             g = false,
             u = fb_actions.goto_parent_dir,
+            o = open_in_oil,
+            O = fb_actions.open,
           },
         },
       },

@@ -7,6 +7,9 @@ function M.setup()
   -- Clear highlight
   vim.keymap.set("n", "<leader><CR>", ":noh<CR>", { silent = true })
 
+  -- Search forward
+  vim.keymap.set({ "n", "x", "o" }, "<leader><leader>", "/")
+
   -- Visual paste (p)
   vim.keymap.set("x", "p", "pgvy")
 

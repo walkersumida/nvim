@@ -11,6 +11,9 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
   },
   opts = {
+    notes_subdir = os.getenv("OBSIDIAN_NOTES_SUBDIR"),
+    new_notes_location = "notes_subdir",
+
     workspaces = {
       {
         name = "main",

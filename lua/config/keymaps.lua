@@ -22,6 +22,10 @@ function M.setup()
   vim.keymap.set({ "n", "v" }, "<Down>", "gj")
   vim.keymap.set({ "n", "v" }, "<Up>", "gk")
 
+  -- Scroll the view one line without moving the cursor
+  vim.keymap.set("n", "zj", "<C-e>")
+  vim.keymap.set("n", "zk", "<C-y>")
+
   -- Terminal keymaps
   local function set_terminal_keymaps()
     local opts = { buffer = 0 }

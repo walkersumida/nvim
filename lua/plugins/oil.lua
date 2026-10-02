@@ -22,6 +22,16 @@ local function add_bookmark()
   vim.notify("Bookmarked: " .. dir)
 end
 
+local function reveal_in_finder()
+  local oil = require("oil")
+  local entry = oil.get_cursor_entry()
+  local dir = oil.get_current_dir()
+  if not entry or not dir then
+    return
+  end
+  vim.system({ "open", "-R", dir .. entry.name })
+end
+
 local function pick_bookmarks()
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
@@ -81,8 +91,21 @@ return {
           desc = "Toggle permissions column",
           mode = "n",
         },
+        ["gd"] = {
+          callback = function()
+            local shown = vim.tbl_contains(require("oil.config").columns, "size")
+            local fmt = "%Y-%m-%d %H:%M"
+            require("oil").set_columns(
+              shown and { "icon" }
+                or { "icon", "size", { "birthtime", format = fmt }, { "mtime", format = fmt } }
+            )
+          end,
+          desc = "Toggle file detail columns",
+          mode = "n",
+        },
         ["gy"] = { "actions.yank_entry", mode = "n" },
         ["gb"] = { callback = add_bookmark, desc = "Add current dir to bookmarks", mode = "n" },
+        ["gr"] = { callback = reveal_in_finder, desc = "Reveal entry in Finder", mode = "n", nowait = true },
         ["<leader>y"] = { "actions.copy_to_system_clipboard", mode = "n" },
         ["<leader>p"] = { "actions.paste_from_system_clipboard", mode = "n" },
       },
